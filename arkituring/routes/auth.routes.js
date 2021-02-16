@@ -5,7 +5,7 @@ const bcrypt = require('bcrypt');
 const mongoose = require('mongoose');
 const Client = require('../models/Client.model')
 const Architect = require('../models/Architect.model')
-
+//const fileUploader = require('../confing/cloudinary.config');
 const saltRounds = 10
 
 
@@ -17,22 +17,22 @@ router.get('/signup', (req,res,next) =>{
     res.render('signup')
 })
 
-router.post('/signup', async (req,res,next)=>{
+router.post('/signup', async(req,res,next)=> {
     const{userSign} = req.body
     console.log(userSign)
     const {
-    /*common*/ firstName,lastName,email1,email2,password,mobileNumber,officeNumber,
+    /*common*/ firstName,lastName,email,extraEmail,password,mobileNumber,officeNumber,
                 rfc,address,country,city,zipCode,      
     /*archiExclusuve*/ commercialName,fiscalName,bioStory,webPage,facebook,
                         instagram,twitter,tiktok
     } = req.body
 
-    console.log({
-        /*common*/ firstName,lastName,email1,email2,password,mobileNumber,officeNumber,
-                    rfc,address,country,city,zipCode,      
-        /*archiExclusuve*/ commercialName,fiscalName,bioStory,webPage,facebook,
-                            instagram,twitter,tiktok
-        })
+    //console.log({
+      //  /*common*/ firstName,lastName,email,extraEmail,password,mobileNumber,officeNumber,
+        //            rfc,address,country,city,zipCode,      
+       // /*archiExclusuve*/ commercialName,fiscalName,bioStory,webPage,facebook,
+       //                     instagram,twitter,tiktok
+       // })
     const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
     if (!regex.test(password)) {
         res.status(500).render('signup',{errorMessage:'Por favor revisa tu contraseña, debe contener al menos 6 carácteres, incluuendo un número, una letra mayúscula y una letra minúscula'})
@@ -47,21 +47,24 @@ router.post('/signup', async (req,res,next)=>{
     let newClient;
     let newArchitect;
     if(userSign === 'client') {
-        newClient = Client.create({
-            signUpInfo:{firstName,lastName,email1,email2,passwordHash,mobileNumber,officeNumber,
-                rfc,address,country,city,zipCode}
+        newClient = await Client.create({
+            signUpInfo:{firstName,lastName,email,extraEmail,passwordHash,mobileNumber,officeNumber,
+                rfc,address,country,city,zipCode
+            }
         })
         console.log('Se creó un nuevo cliente', newClient);
-        res.render('Client/main/welcomeProfile')
+        req.session.currentClient = newClient;
+        res.render('Client/main/welcomeProfile',{valueCookie:req.session.currentClient})
     } else {
         newArchitect = Architect.create({
-            /*common*/ businessInformation:{firstName,lastName,email1,email2,passwordHash,mobileNumber,
-                        officeNumber,rfc,address,country,city,zipCode},      
-            /*archiExclusuve*/ socialInformation:{commercialName,fiscalName,bioStory,webPage,facebook,
+            /*common*/ businessInformation:{firstName,lastName,email,extraEmail,passwordHash,mobileNumber,
+                        officeNumber,rfc,address,country,city,zipCode,fiscalName,commercialName},      
+            /*archiExclusuve*/ socialInformation:{bioStory,webPage,facebook,
                                 instagram,twitter,tiktok}
         })
-        console.log('Se creó una nueva empresa', newArchitect);
-        res.render('Architect/main/welcomeProfile')
+        console.log('Se creó una nueva empresa', {newArchitect});
+        req.session.currentClient = newArchitect;
+        res.render('Architect/main/welcomeProfile',{valueCookie:req.session.currentClient})
     }
 
     } catch(error) {
@@ -82,9 +85,51 @@ router.get('/login', (req,res,next)=>{
     res.render('login')
 })
 
-router.post('/login', (req,res,next)=>{
+router.post('/login', async(req,res,next)=>{
+    const {userSign} = req.body
+    const {email,password} = req.body
+    console.log(userSign)
+    console.log(email,password)
+    if(email === '' || password === '') {
+        res.render('login', {errorMessage:"Por favor llena todos los campos."})
+    };
     
-})
+      try{
+          if(userSign === 'client'){
+            let clientLogin =  await Client.findOne({email})
+            console.log(clientLogin.signUpInfo)
+            if (!clientLogin) {
+                res.render('login',{errorMessage:'El usuario no fue encontrado, por favor verifica la información.'})
+                return
+            } else if (bcrypt.compareSync(password,clientLogin.signUpInfo.passwordHash)) {
+            req.session.currentClient = clientLogin;
+            res.rendirect('/client-main');
+        } else {
+            res.render('login', {errorMessage:'Contraseña incorrecta, por favor verifica.'})
+        }}   
+    } catch (error) {
+        next(error);
+    }
+    
+        
+    /*} else {
+        try{ architectLogin = await Architect.findOne({email})
+        console.log(architectLogin.businessInformation)
+            if (!architectLogin) {
+                res.render('login',{errorMessage:'El usuario no fue encontrado, por favor verifica la información.'})
+                return;
+            } else if (bcrypt.compareSync(password,architectLogin.businessInformation.passwordHash)) {
+            req.session.currentArchitect = architectLogin;
+            res.redirect('/architect-main');
+        } else {
+            res.render('login', {errorMessage:'Contraseña incorrecta, por favor verifica.'})
+        }
+
+    } catch (error) {
+    next(error);
+} }*/
+
+});
 
 
 

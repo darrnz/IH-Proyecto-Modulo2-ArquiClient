@@ -40,8 +40,6 @@ const constructionSchema = new Schema(
         },
         designClientReq:{
             pinterstAPI:String,
-            photosWebAndSocial:String,
-            uploadedImgaes:[String],
             specificRequest:{ ///si avanzo poner listas para numero de hab etc
                 type:String
             }

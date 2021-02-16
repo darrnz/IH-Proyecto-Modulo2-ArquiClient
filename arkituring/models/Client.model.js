@@ -15,17 +15,17 @@ const clientSchema = new Schema(
                     required: [true, "Por favor completa todos los datos"],
                    
                 },
-                email1: {
+                email: {
                     type:String,
-                    requiered: [true,"Por favor agrega un correo electrónico, con este iniciarás sesión"],
+                    required: [true,"Por favor agrega un correo electrónico, con este iniciarás sesión"],
                     unique:true,
                     lowercase:true,
                     trim:true,
                     match:[/^\S+@\S+\.\S+$/,"Porfavor usa un mail valido"]
                 },
-                email2: {
+                extraEmail: {
                     type:String,
-                    unique:true,
+                    
                     lowercase:true,
                     trim:true,
                     match:[/^\S+@\S+\.\S+$/,"Porfavor usa un mail valido"]

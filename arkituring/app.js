@@ -23,7 +23,7 @@ const app_name = require('./package.json').name;
 const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.')[0]}`);
 
 const app = express();
-
+require('./confing/session.config')(app)
 // Middleware Setup
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -53,8 +53,13 @@ app.locals.title = 'Express - Generated with IronGenerator';
 
 const index = require('./routes/index');
 const auth = require('./routes/auth.routes');
+const architect = require('./routes/architect.routes');
+//const clients = require('./routes/client.routes');
 app.use('/', index);
 app.use('/', auth);
+app.use('/', architect);
+//app.use('/', clients);
+
 
 
 module.exports = app;

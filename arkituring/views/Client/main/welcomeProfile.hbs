@@ -1,4 +1,6 @@
-<h2>Bienvinido</h2>
+{{#if valueCookie}}
+
+<h2>Bienvinido{{valueCookie.signUpInfo.firstName}}</h2>
 <h3>Gracias por usar Arkituring para construir tu sueño</h3>
 
 <div>
@@ -15,3 +17,4 @@
 <p>Ir a mi perfil</p>
 <a href="/mainProfile">Perfil</a>
 </div>
+{{/if }}
