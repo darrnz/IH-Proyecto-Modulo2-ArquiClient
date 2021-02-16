@@ -1,0 +1,67 @@
+<!-- Auth form  -->
+<div id="beginHere" class="justify-content-center">
+  <link rel="stylesheet" href="/stylesheets/authForm.css" />
+  <div class="stylish-form "></div>
+  <script>
+    let authFlag = true;
+    function toggleView() {
+      authFlag = authFlag === true ? false : true;
+      const nameInput = authFlag ? `
+                    <div class="input-group">
+                       <span class="input-group-addon bg-dark"><i class="fas fa-user"></i></i></span>
+                       <input type="text" class="form-control" name="name" placeholder="Nombre de usuario: ">
+                    </div>` : '';///:::::
+      const verifyInput = authFlag ? `
+                    <div class="input-group">
+                       <span class="input-group-addon bg-dark"><i class="fas fa-lock"></i></i></span>
+                       <input type="password" class="form-control" name="verify" placeholder="Repite Contraseña">
+                    </div>` : '';
+      const errorHandleBars = `
+                    <div>
+                      {{#if error}}
+                        <h6 style="color: #17A2B0;">{{error}}</h6>
+                      {{/if}}
+                    <h6 style="color: #17A2B0;">{{message}}</h6>
+                    </div>`;
+      document.querySelector('.stylish-form').innerHTML = `
+  <div class="inner-section">
+    <form method="POST" action="${
+        authFlag ? '/signup ' : '/login'
+        }">
+      <div class="mar20 inside-form">
+        <h2 class="font_white text-center">${
+        authFlag ? 'ÚNETE AHORA' : 'INICIA SESIÓN'
+        }</h2>
+        <ul>
+          <li class="icon-holder dsp-flex">
+            <a class="icon-holder dsp-flex" href="/auth/google"> <i class="fab fa-google"></i></a>
+          </li>
+          <li class="icon-holder dsp-flex">
+            <a class="icon-holder dsp-flex" href="/auth/facebook"> <i class="fab fa-facebook-f"></i></a>
+          </li>
+        </ul>` + nameInput + `<div class="input-group">
+          <span class="input-group-addon bg-dark"><i class="fa fa-envelope "></i></span>
+          <input type="email" class="form-control" name="email" placeholder="Correo electrónico:">
+        </div>
+        <div class="input-group">
+          <span class="input-group-addon bg-dark"><i class="fas fa-lock"></i></span>
+          <input type="password" class="form-control" name="password" placeholder="Contraseña:">
+        </div>` + verifyInput + errorHandleBars + `<div class="footer text-center">
+          <input type="submit" class="btn btn-neutral btn-round btn-lg" value="${
+        authFlag ? '¡Únete!' : 'Inicia sesión'
+        }"></a>
+        
+          <input type="button" onclick="toggleView()" class="btn btn-neutral btn-round btn-lg" 
+          value="${
+        !authFlag ? '¡Únete!' : 'Inicia sesión'
+        }">
+         </button>
+        </div>
+      </div>
+    </form>
+  </div>
+`;
+    }
+    toggleView();
+  </script>
+</div>

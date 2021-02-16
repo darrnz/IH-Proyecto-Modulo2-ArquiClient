@@ -1,0 +1,172 @@
+<div id="signUp-content">
+    <div class="allForm"></div>
+   
+ <script>
+     let selectUserType = false;
+
+     function changeUser (){
+         selectUserType = selectUserType === true ? false : true;
+
+    document.querySelector('.allForm').innerHTML =`
+    <form action="/signup" method="POST">
+
+    <p>Cambiar a: </p>
+            <div>
+            <input type="button" onclick='changeUser()' id='client' name="userType"
+             value="${!selectUserType? 'Cliente':'Arquitecto'}">
+            
+           
+   //<!--formulario cliente-->
+    <div>
+                 <!--tag para mandar a Arch o Client-->
+            <div >    
+            <input class="noDisplay" type="text" style="hidden" name="userSign" value="${!selectUserType? 'architect':'client'}"id="userSign">
+            </div>
+
+    <h3>Formulario para: ${!selectUserType? 'Arquitecto':'Cliente'}</h3>
+
+
+        <div>
+            <label for="firstName">Nombre(s)</label>
+            <input type="text" name="firstName" id="firstName" placeholder="Nombre(s)">
+        </div>
+
+        <div>
+            <label for="lastName">Apellido(s)</label>
+            <input type="text" name="lastName" id="lastName" placeholder="Apellido(s)">
+        </div>
+
+        <div>
+            <label for="email1">Correo Electrónico</label>
+            <input type="email" name="email1" id="email1" placeholder="Correo electrónico principal">
+        </div>
+
+            <div>
+            <label for="email2">Correo Electrónico</label>
+            <input type="email" name="email2" id="email2" placeholder="Otro correo electrónico ">
+        </div>
+
+        <div>
+            <label for="password">Contraseña</label>
+            <input type="password" name="password" id="password" placeholder="********">
+            <p>La Contraseña debe contener al menos 6 caráctres, un número, una letra minúscula, una letra mayúscula 
+                y escribirse sin espacios.
+            </p>
+        </div>    
+
+        <div>
+            <label for="mobileNumber">Número de teléfono móvil</label>
+            <input type="text" name="mobileNumber" id="mobileNumber" placeholder="Número de 10 digitos">
+        </div>
+
+            <div>
+            <label for="officeNumber">Número de teléfono oficina/fijo</label>
+            <input type="text" name="officeNumber" id="officeNumber" placeholder="Número de 10 digitos">
+        </div>
+
+        <div>
+            <label for="rfc">RFC</label>
+            <input type="text" name="rfc" id="rfc" placeholder="RFC">
+        </div>
+
+        <div>
+            <label for="address">Dirección</label>
+            <input type="text" name="address" id="address" placeholder='Dirección actual'>
+        </div>
+
+        <div>
+            <label for="zipCode">C.P.</label>
+            <input type="text" name="zipCode" id="zipCode" placeholder="Código Postal">
+        </div>
+
+        <div>
+            <label for="country">País de residencia</label>
+            <input type="text" name="country" id="country" value="Mexico" placeholder="País de residencia">
+        </div>
+
+        <div>
+            <label for="city">Ciudad</label>
+            <input type="text" name="city" id="city" placeholder="Ciudad de residencia">
+        </div>` 
+        
+        + `${selectUserType? 
+        `<button type="submit" class="btn btn-primary">Create account</button>
+        </section>'}
+        {{#if errorMessage}}
+        <p class="error">{{errorMessage}}</p>
+        {{/if}}  </div>
+        </form>`:
+        `<!--formularioa extra para arquitectos-->
+     
+        <section id="archForm">
+        <div>
+            <label for="commercialName">Nombre comercial</label>
+            <input type="text" name="commercialName" id="commercialName" placeholder="Nombre comercial">
+        </div> 
+
+        <div>
+            <label for="fiscalName">Nombre fiscal</label>
+            <input type="text" name="fiscalName" id="fiscalName" placeholder="Nombre fiscal">
+        </div>     
+
+        
+        <!--<div>
+            <label for="logoImg">Logotipo</label>
+            <input type="file" name="logoImg" id="logoImg">
+        </div> -->
+
+
+    <h3>Bio and Social Media</h3>
+
+        <div>
+            <label for="bioStory">Cuentanos un poco de ti.</label>
+            <input type="textarea" name="bioStory" id="bioStory" 
+            placeholder="Escribe un breve texto que podrán leer tus posibles
+            clietnes para conocerte más">
+        </div>     
+
+        <div>
+            <label for="webPage">Página Web</label>
+            <input type="text" name="webPage" id="webPage" placeholder="Pega el link de tu página web">
+        </div>
+
+
+        <div>
+            <label for="facebook">Facebook</label>
+            <img src="" alt="facebook-logo">
+            <input type="text" name="facebook" id="facebook" placeholder="Pega el link de tu perfil de Facebook">
+        </div>
+
+        <div>
+            <label for="instragram">Instagram</label>
+            <img src="" alt="IG-logo">
+            <input type="text" name="instragram" id="instragram" placeholder="Pega el link de tu perfil de Instragram">
+        </div>    
+
+        <div>
+            <label for="twitter">Twitter</label>
+            <img src="" alt="twitter-logo">
+            <input type="text" name="twitter" id="twitter" placeholder="Pega el link de tu perfil de Twitter">
+        </div>
+
+        <div>
+            <label for="tiktok">Tik-Tok</label>
+            <img src="" alt="TT-logo">
+            <input type="text" name="tiktok" id="tiktok" placeholder="Pega el link de tu perfil de Tik-tok">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Create account</button>
+        </section>'}
+        {{#if errorMessage}}
+        <p class="error">{{errorMessage}}</p>
+        {{/if}}
+
+      
+        </div>
+    </form>`}`
+
+     }
+     
+changeUser();
+</script>
+</div>

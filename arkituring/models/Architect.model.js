@@ -3,7 +3,7 @@ const {Schema, model} = require('mongoose');
 const archiSchema = new Schema(
     {
         businessInformation:{
-                commecialBusinessName:{
+                commercialName:{
                     type:String,
                     trim:true,
                     unique:true
@@ -12,16 +12,16 @@ const archiSchema = new Schema(
                 firstName: {
                     type:String,
                     trim:true,
-                    requiered: [true, "Por favor completa todos los datos"],
-                    unique:true
+                    //requiered: [true, "Por favor completa todos los datos"],
+                    
                 },
                 lastName: {
                     type:String,
                     trim:true,
                     requiered: [true, "Por favor completa todos los datos"],
-                    unique:true
+                
                 },
-                emailNum1: {
+                email1: {
                     type:String,
                     requiered: [true,"Por favor agrega un correo electrónico, con este iniciarás sesión"],
                     unique:true,
@@ -29,7 +29,7 @@ const archiSchema = new Schema(
                     trim:true,
                     match:[/^\S+@\S+\.\S+$/,"Porfavor usa un mail valido"]
                 },
-                emailNum2: {
+                email2: {
                     type:String,
                     unique:true,
                     lowercase:true,
@@ -44,30 +44,32 @@ const archiSchema = new Schema(
                     //banderitas con el prefijo internacional
                 },
                 mobileNumber:{
-                    type:Number,
+                    type:String,
                     required:[true,"Agregue un número de teléfono válido"]
                 },
                 officeNumber:{
-                    type:Number,
-                    required:[true,"Agregue un número de teléfono válido"]
+                    type:String,
+                   
                 },
                 rfc:{
                     type:String,
                 },
-                fisalName:{
+                fiscalName:{
                     type:String,
                     trim:true,
                     unique:true
                 },
-                businessAddress:{
+                address:{
                     type:String,
                     required:[true,'Por favor agregue su dirección actual']
                 },
                 country:{
-                    ///usar un selccionador de google maps
+                    type:String,
+                    required:[true,'Por favor agregue su país']
                 },
                 city:{
-                    //usar un seleccionador de google maps
+                    type:String,
+                    required:[true,'Por favor agregue el nombre de su ciudad']
                 },
                 zipCode:{
                     type:String,/// filtrar por el selccionador de google maps?
@@ -75,7 +77,7 @@ const archiSchema = new Schema(
                 },
              },
         socialInformation:{
-            bioStoty:String,
+            bioStory:String,
             webPage:String,
             facebook:String,
             instagram:String,

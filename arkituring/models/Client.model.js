@@ -1,4 +1,4 @@
-const {Schema,model} = requiere('moongose');
+const {Schema,model} = require('mongoose');
 
 
 const clientSchema = new Schema(
@@ -15,9 +15,16 @@ const clientSchema = new Schema(
                     required: [true, "Por favor completa todos los datos"],
                    
                 },
-                email: {
+                email1: {
                     type:String,
-                    required: [true,"Por favor agrega un correo electrónico, con este iniciarás sesión"],
+                    requiered: [true,"Por favor agrega un correo electrónico, con este iniciarás sesión"],
+                    unique:true,
+                    lowercase:true,
+                    trim:true,
+                    match:[/^\S+@\S+\.\S+$/,"Porfavor usa un mail valido"]
+                },
+                email2: {
+                    type:String,
                     unique:true,
                     lowercase:true,
                     trim:true,
@@ -30,22 +37,28 @@ const clientSchema = new Schema(
                 phoneCountry:{
                     //banderitas con el prefijo internacional
                 },
-                phoneNumber:{
-                    type:Number,
+                mobileNumber:{
+                    type:String,
                     required:[true,"Agregue un número de teléfono válido"]
+                },
+                officeNumber:{
+                    type:String,
+                   
                 },
                 rfc:{
                     type:String,
                 },
-                addressActual:{
+                address:{
                     type:String,
                     required:[true,'Por favor agregue su dirección actual']
                 },
                 country:{
-                    ///usar un selccionador de google maps
+                    type:String,
+                    required:[true,'Por favor agregue su país']
                 },
                 city:{
-                    //usar un seleccionador de google maps
+                    type:String,
+                    required:[true,'Por favor agregue el nombre de su ciudad']
                 },
                 zipCode:{
                     type:String,/// filtrar por el selccionador de google maps?
