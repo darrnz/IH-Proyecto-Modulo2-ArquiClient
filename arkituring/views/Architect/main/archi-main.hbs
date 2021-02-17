@@ -1,10 +1,32 @@
 <h1>Hola</h1>
 
 {{#if valueCookie}}
-<p>{{valueCookie}}</p>
-<h2>Bienvinido{{valueCookie.firstName}}</h2>
-<img src="{{valueCookie.logoImg}}" alt="">
-<h3>Gracias por usar Arkituring para construir tu sueño</h3>
+<p>{{valueCookie.firstName}}</p>
 
+<img src="{{valueCookie.logoImg}}" alt="">
+
+{{#each projectsId.projectConstId}}
+  <div id='actualProjects'style="border: solid;">
+      <div > 
+    <p>{{this.projectName}}</p>
+    </div>  
+     <div> 
+    <p>{{this.address}}</p>
+    </div>
+     <!--<div>
+     {{#each this.architects}}
+    <p>{{this.firstName}}</p>
+      {{/each}}
+    </div>-->
+    
+   <div>
+      <a href="/project/{{this._id}}/details">Details</a>
+    </div>
+    <div>
+      <a href="/project/{{this.id}}/edit">Edit</a>
+    </div>
+        </div>
+        
+     {{/each}}
 
 {{/if}}

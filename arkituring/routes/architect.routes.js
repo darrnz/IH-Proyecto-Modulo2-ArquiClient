@@ -8,14 +8,26 @@ const Architect = require('../models/Architect.model')
 //RUTAS
 
 //Main profile
-router.get ('/architect-main', (req,res) =>{
+router.get ('/architect-main', async(req,res) =>{
     if(req.session.currentArchitect){
-    console.log(req.session)
-    res.render('Architect/main/archi-main',
-     {valueCookie:req.session.currentArchitect})
-    }
+        const architectId= req.session.currentArchitect._id
     
-})
+        const clientProjects = await Architect.findById(architectId)
+                                .populate('projectConstId client')
+                                .populate({
+                                    path:'client',
+                                    model:'Client'}
+                                )
+                              
+                               
+        console.log(clientProjects)
+        //console.log(req.session.currentClient)
+        res.render('Architect/main/archi-main',
+         {valueCookie:req.session.currentArchitect,
+          projectsId:clientProjects  
+        })
+        }
+        })
 
 //proyecto muestra home
 

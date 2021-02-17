@@ -2,8 +2,13 @@
 {{#if valueCookie}}
 
 <div>
-    <form action="/add-project" method="POST">
+    <form action="/add-project" method="POST" enctype="multipart/form-data">
     <section id="terrainDetails">
+    <div>
+        <label for="projectName">Nombre del proyecto</label>
+        <input type="text" value='{{viewPRoject.projectName}}' name="projectName" id="projectName" placeholder="Nombre con el que identificarás tu proyecto">
+    </div>
+    
     <div>
         <label for="totalSquareMeters">Metros cuadrados</label>
         <input type="number" name="totalSquareMeters" id="totalSquareMeters">
@@ -21,10 +26,11 @@
         <input type="textarea" name="limitatiosLaws" id="limitatiosLaws" placeholder="Agrega información sobre las limitaciones de construcción">
     </div>
 
-    <!--<div>
+    <div>
         <label for="terrainImages">Imagenes del terreno</label>
         <input type="file" name="terrainImages" id="terrainImages">
-    </div>-->
+    </div>
+    
     </section>
 
     <section id="conceptDetails">

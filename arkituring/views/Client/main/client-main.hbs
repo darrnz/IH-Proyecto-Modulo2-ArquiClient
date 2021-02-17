@@ -6,15 +6,18 @@
 {{#if valueCookie}}
 
   {{#each projectsId.projects}}
-  <div id='actualProjects'>
+  <div id='actualProjects'style="border: solid;">
+      <div > 
+    <p>{{this.projectName}}</p>
+    </div>  
      <div> 
     <p>{{this.address}}</p>
     </div>
-    <div>
-      {{#each this.architects}}
+     <!--<div>
+     {{#each this.architects}}
     <p>{{this.firstName}}</p>
       {{/each}}
-    </div>
+    </div>-->
     
    <div>
       <a href="/project/{{this._id}}/details">Details</a>
@@ -22,10 +25,12 @@
     <div>
       <a href="/project/{{this.id}}/edit">Edit</a>
     </div>
+        </div>
+        
      {{/each}}
 
 
-    </div>
+
   </div>
  
 

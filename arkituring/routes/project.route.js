@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const Architect = require('../models/Architect.model')
 const Construction = require ('../models/Construction.model.js');
 const Client = require ('../models/Client.model');
+const fileUploader = require('../confing/cloudinary.config.js');
 
 //rutas
 //detalle por proyecto
@@ -29,6 +30,7 @@ router.get('/project/:id/edit',async(req,res,next)=>{
 
   res.render('Project/project-edit', 
   {
+    idEdit:id,
     viewPRoject:selectedProject,
     valueCookieArq:req.session.currentArchitect,
     valueCookieUser:req.session.currentClient
@@ -36,15 +38,26 @@ router.get('/project/:id/edit',async(req,res,next)=>{
 }
 })
 
-router.post('/project/:id/edit',async(req,res,next)=>{
+router.post('/project/:id/edit',fileUploader.single('renderImg'),async(req,res,next)=>{
   const id = req.params.id
-  const {limitatiosLaws,pinterstAPI,specificRequest} =req.body
+  const {
+    limitatiosLaws,pinterstAPI,specificRequest,totalSquareMeters,address,projectName
+  }=req.body
 
-  const editedProject = await Construction.findByIdAndUpdate(id);
-  console.log('Haz editado un nuevo proyecto',{editedProject})
-  res.redirect('/project/:id/details')
+  const editedProject = await Construction.findByIdAndUpdate(id,
+    {$set:{limitatiosLaws,pinterstAPI,specificRequest,totalSquareMeters,
+            address,projectName,renderImg:req.file.path}},
+    {new:true})
+   
+   
+  console.log('Haz editado un nuevo proyecto',editedProject)
+  res.redirect(`/project/${id}/details`)
 
 })
+
+  /*const toPopulate = [ { path: 'idUser', select: '-password' }, { path : 'procedures', populate: { path: 'locantionId' } } ]
+  Dentist.find().populate(toPopulate)*/
+
 
 
 //export

@@ -27,19 +27,13 @@ router.post('/signup',fileUploader.single('logoImg') ,async(req,res,next)=> {
                         instagram,twitter
     } = req.body
 
-    //console.log({
-      //  /*common*/ firstName,lastName,email,extraEmail,password,mobileNumber,officeNumber,
-        //            rfc,address,country,city,zipCode,      
-       // /*archiExclusuve*/ commercialName,fiscalName,bioStory,webPage,facebook,
-       //                     instagram,twitter,tiktok
-       // })
     const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
     if (!regex.test(password)) {
         res.status(500).render('signup',{errorMessage:'Por favor revisa tu contraseña, debe contener al menos 6 carácteres, incluuendo un número, una letra mayúscula y una letra minúscula'})
         return;
     }
     //pendiense revision de que contenidos van llenos
-     let newClient;
+    let newClient;
     let newArchitect;
 
     try{
@@ -133,12 +127,6 @@ router.post('/login', async(req,res,next)=>{
 });
 
 //LOGOUT
-router.get('/userProfile', (req, res) => {
-    console.log(req.session)
-    res.render('user/userProfile', { userInSession: req.session.currentUser });
-  
-  });
-  
   router.post('/logout', (req, res) => {
     req.session.destroy();
     res.redirect('/');

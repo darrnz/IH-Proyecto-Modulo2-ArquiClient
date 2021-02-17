@@ -1,20 +1,53 @@
 <!--El cliente podrá editar algunos campos pero no todos, ¿debería verse en otra pagina cada actualizacion?-->
 
 <!--Aqui van los detalles que pone el cliente-->
+<p>prueba</p>
+
+{{#if valueCookieUser}}
+    <p class="loginCli">1</p>
+{{/if}}
 
 
-<div>
-    <form action="/add-project" method="POST">
+<form action="/project/{{idEdit}}/edit" method="POST" enctype="multipart/form-data">
+<div class="changes"></div>
+<p>--------------------------</p>
+<script>
+    
+    //const arquitect = document.querySelector('.loginArq').innerHTML
+    const client = document.querySelector('.loginCli')
+    console.log(client)
+    let editUserType;
+    if(client == null){
+        editUserType=true
+    } 
+    console.log(editUserType)
+    function editUser() {
+        editUserType = editUserType === true? false:true; //////${editUserType? "no edita cliete":"no edita arq"}
+        document.querySelector('.changes').innerHTML =
+        `
+        <div>
+        
+      <div>
+        <label for="totalSquareMeters">Metros cuadrados</label>
+        <input type="number" value='{{viewPRoject.totalSquareMeters}}' name="totalSquareMeters" id="totalSquareMeters" ${editUserType? '':'readonly'}>
+    </div>
+
+    <div>
+        <label for="totalSquareMeters">Dirección</label>
+        <input type="text" name="address" value="{{viewPRoject.address}}" id="address" placeholder="Dirección del lugar" ${editUserType? 'readonly':''}>
+    </div>`;
+
+    }
+    editUser()
+</script>
+
+    
     <section id="terrainDetails">
     <div>
-        <label for="totalSquareMeters">Metros cuadrados</label>
-        <input type="number" value='{{viewPRoject.totalSquareMeters}}' name="totalSquareMeters" id="totalSquareMeters" readonly>
+        <label for="projectName">Nombre del proyecto</label>
+        <input type="text" value='{{viewPRoject.projectName}}' name="projectName" id="projectName" >
     </div>
-
-    <div>
-        <label for="address">Dirección</label>
-        <input type="text" name="address" value="{{viewPRoject.address}}" id="address" placeholder="Dirección del lugar" readonly>
-    </div>
+    
 
     
 
@@ -27,6 +60,11 @@
         <label for="terrainImages">Imagenes del terreno</label>
         <input type="file" name="terrainImages" id="terrainImages">
     </div>-->
+
+    <div>
+        <label for="renderImg">Render Principal</label>
+        <input type="file" name="renderImg" id="renderImg">
+    </div>
     </section>
 
     <section id="conceptDetails">
@@ -40,7 +78,9 @@
         <label for="specificRequest">Detalles importantes</label>
         <input type="textarea" value='{{viewPRoject.specificRequest}}' name="specificRequest" id="specificRequest" placeholder="Agrega detalles importantes para tu diseño, cantidad de habitaciones, baños, materiales, etc.">
     </div>
+ </section>
+      <button type="submit" class="btn btn-primary">Guardar cambios</button>
 
-        <div>
-        <input style='display:none' value='{{valueCookie._id}}' type="text" name="clientId" id="clientId">
-    </div>
+      </form>
+      </div>
+

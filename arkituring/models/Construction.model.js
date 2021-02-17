@@ -1,10 +1,15 @@
 const {Schema,model} = require('mongoose');
 
 const constructionSchema = new Schema({
+    projectName:{       
+        type:String,
+        required:true
+    },
     totalSquareMeters:{
         type:Number,
         required:true,
     },
+    terrainImages:String,
     address:{
         type:String,
     },
@@ -13,6 +18,7 @@ const constructionSchema = new Schema({
     },
     pinterstAPI:String,
     specificRequest:String,
+    renderImg:String,
     conceptStep:{
         type:String,
     },
@@ -21,7 +27,7 @@ const constructionSchema = new Schema({
     constructionStep:{
         type:String,
     },
-    terrainImages:String,
+    
     client:[{type: Schema.Types.ObjectId, ref: 'Client'}],
     architects:[{type: Schema.Types.ObjectId, ref: 'Architect'}]
     
