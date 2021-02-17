@@ -16,7 +16,14 @@ router.get ('/client-main', async (req,res) =>{
     if(req.session.currentClient){
     const clientId= req.session.currentClient._id
     
-    const clientProjects = await Client.findById(clientId).populate('projects')
+    const clientProjects = await Client.findById(clientId)
+                            .populate('projects architects')
+                            .populate({
+                                path:'architects',
+                                model:'Architect'}
+                            )
+                          
+                           
     console.log(clientProjects)
     //console.log(req.session.currentClient)
     res.render('Client/main/client-main',
