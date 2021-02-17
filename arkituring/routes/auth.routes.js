@@ -47,7 +47,9 @@ router.post('/signup',fileUploader.single('logoImg') ,async(req,res,next)=> {
         })
         console.log('Se creó un nuevo cliente', {newClient});
         req.session.currentClient = newClient;
-        res.render('Client/main/welcomeProfile')
+        res.render('Client/main/welcomeProfile', {
+            valueCookie:currentClient
+        })
     } else {
         newArchitect = Architect.create({
             /*common*/ firstName,lastName,email,passwordHash,mobileNumber,

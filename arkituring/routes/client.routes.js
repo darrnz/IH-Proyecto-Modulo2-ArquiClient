@@ -22,7 +22,7 @@ router.get ('/client-main', async (req,res) =>{
     
         const clientProjects = await Client.findById(clientId).populate(toPopulate)
                           
-        console.log(clientProjects.projects)
+        console.log(req.session.currentClient)
         res.render('Client/main/client-main',{
             valueCookie:req.session.currentClient,
             projectsId:clientProjects  

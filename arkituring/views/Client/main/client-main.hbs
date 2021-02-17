@@ -1,10 +1,11 @@
-<h1>Welcome Client</h1>
+
+
+{{#if valueCookie}}
+<h1>Welcome {{valueCookie.firstName}}</h1>
 
 
 <a href="/add-project">Iniciar un proyecto</a>
-
-{{#if valueCookie}}
-
+<p>{{valueCookie.firstName}}</p>
   {{#each projectsId.projects}}
   <div id='actualProjects'style="border: solid;">
       <div > 
