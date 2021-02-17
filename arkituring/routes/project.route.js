@@ -55,8 +55,6 @@ router.post('/project/:id/edit',fileUploader.single('renderImg'),async(req,res,n
 
 })
 
-  /*const toPopulate = [ { path: 'idUser', select: '-password' }, { path : 'procedures', populate: { path: 'locantionId' } } ]
-  Dentist.find().populate(toPopulate)*/
 
 
 

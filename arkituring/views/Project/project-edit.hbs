@@ -33,7 +33,7 @@
     </div>
 
     <div>
-        <label for="totalSquareMeters">Dirección</label>
+        <label for="address">Dirección</label>
         <input type="text" name="address" value="{{viewPRoject.address}}" id="address" placeholder="Dirección del lugar" ${editUserType? 'readonly':''}>
     </div>`;
 
@@ -58,12 +58,12 @@
 
     <!--<div>
         <label for="terrainImages">Imagenes del terreno</label>
-        <input type="file" name="terrainImages" id="terrainImages">
+        <input type="file" name="terrainImages" value="{{viewPRoject.terrainImages}}" id="terrainImages">
     </div>-->
 
     <div>
         <label for="renderImg">Render Principal</label>
-        <input type="file" name="renderImg" id="renderImg">
+        <input type="file" name="renderImg" value="{{viewPRoject.renderImg}}" id="renderImg">
     </div>
     </section>
 

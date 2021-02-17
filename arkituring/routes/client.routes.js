@@ -11,15 +11,18 @@ const Architect = require('../models/Architect.model')
 
 //RUTAS
 
+  /*const toPopulate = [ { path: 'idUser', select: '-password' }, { path : 'procedures', populate: { path: 'locantionId' } } ]
+  Dentist.find().populate(toPopulate)*/
+
 //Main profile
 router.get ('/client-main', async (req,res) =>{
     if(req.session.currentClient){
+        const toPopulate =[ { path: 'projects', populate: { path: 'architects' } } ]
         const clientId= req.session.currentClient._id
     
-        const clientProjects = await Client.findById(clientId)
-                                .populate('projects architects').populate({path:'architects',model:'Architect'})
+        const clientProjects = await Client.findById(clientId).populate(toPopulate)
                           
-        console.log(clientProjects)
+        console.log(clientProjects.projects)
         res.render('Client/main/client-main',{
             valueCookie:req.session.currentClient,
             projectsId:clientProjects  
