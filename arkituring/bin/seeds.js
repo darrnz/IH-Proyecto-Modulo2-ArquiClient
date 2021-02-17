@@ -1,25 +1,31 @@
-const {Schema, model} = require('mongoose');
+const mongoose const mongoose = require('mongoose')
+const Client = require('../models/Client.model')
 
-const archiSchema = new Schema(
-    {
-                commercialName:{
-                    type:String,
-                    trim:true,     
-                },
-                logoImg:String,
-                firstName: {
-                    type:String,
-                    trim:true,
-                },
-                lastName: {
-                    type:String,
-                    trim:true,
-                    requiered: [true, "Por favor completa todos los datos"],
-                },
+const DB_NAME = ''
+
+mongoose.connect(`mongodb://localhost/${DB_NAME}`, {
+    useCreateIndex: true,
+    useNewUrlParser:true,
+    useUnifiedTopology:true
+
+})
+
+const clients =  signUpInfo:{ 
+                firstName: Juan,
+                
+                lastName: Perez,
+                   
                 email: {
                     type:String,
-                    requiered: [true,"Por favor agrega un correo electrónico, con este iniciarás sesión"],
+                    required: [true,"Por favor agrega un correo electrónico, con este iniciarás sesión"],
                     unique:true,
+                    lowercase:true,
+                    trim:true,
+                    match:[/^\S+@\S+\.\S+$/,"Porfavor usa un mail valido"]
+                },
+                extraEmail: {
+                    type:String,
+                    
                     lowercase:true,
                     trim:true,
                     match:[/^\S+@\S+\.\S+$/,"Porfavor usa un mail valido"]
@@ -34,7 +40,11 @@ const archiSchema = new Schema(
                 mobileNumber:{
                     type:String,
                     required:[true,"Agregue un número de teléfono válido"]
-                }, 
+                },
+                officeNumber:{
+                    type:String,
+                   
+                },
                 rfc:{
                     type:String,
                 },
@@ -54,22 +64,5 @@ const archiSchema = new Schema(
                     type:String,/// filtrar por el selccionador de google maps?
                     required:[true,'Por favor agregue su código postal']
                 },
-            bioStory:String,
-            webPage:String,
-            facebook:String,
-            instagram:String,
-            twitter:String,
-            promPrjId:[{type: Schema.Types.ObjectId, ref: 'PromoPrj'}],
-            projectConstId:[{type: Schema.Types.ObjectId, ref: 'Construction'}],
-
-            userType:{
-                type:String,
-                default:'architect'}
-            
-        },                        
-        {
-            timestamps:true         
-        }
-)
-
-module.exports = model('Architect', archiSchema)
+             }
+        

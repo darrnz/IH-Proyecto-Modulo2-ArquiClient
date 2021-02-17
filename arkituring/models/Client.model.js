@@ -3,7 +3,7 @@ const {Schema,model} = require('mongoose');
 
 const clientSchema = new Schema(
     {////INFORMACCION DE INSCRIPCION
-        signUpInfo:{
+       
                 firstName: {
                     type:String,
                     trim:true,
@@ -12,20 +12,12 @@ const clientSchema = new Schema(
                 lastName: {
                     type:String,
                     trim:true,
-                    required: [true, "Por favor completa todos los datos"],
-                   
+                    required: [true, "Por favor completa todos los datos"],  
                 },
                 email: {
                     type:String,
                     required: [true,"Por favor agrega un correo electrónico, con este iniciarás sesión"],
                     unique:true,
-                    lowercase:true,
-                    trim:true,
-                    match:[/^\S+@\S+\.\S+$/,"Porfavor usa un mail valido"]
-                },
-                extraEmail: {
-                    type:String,
-                    
                     lowercase:true,
                     trim:true,
                     match:[/^\S+@\S+\.\S+$/,"Porfavor usa un mail valido"]
@@ -40,13 +32,6 @@ const clientSchema = new Schema(
                 mobileNumber:{
                     type:String,
                     required:[true,"Agregue un número de teléfono válido"]
-                },
-                officeNumber:{
-                    type:String,
-                   
-                },
-                rfc:{
-                    type:String,
                 },
                 address:{
                     type:String,
@@ -64,12 +49,11 @@ const clientSchema = new Schema(
                     type:String,/// filtrar por el selccionador de google maps?
                     required:[true,'Por favor agregue su código postal']
                 },
-             },
-        projectsInfo:{
-            projectConstId:[{type: Schema.Types.ObjectId, ref: 'Construction'}],
-            projectRemodtId:[{type: Schema.Types.ObjectId, ref: 'Remodelation'}],
-            projectInteriorId:[{type: Schema.Types.ObjectId, ref: 'InteriorDesign'}]
-        }
+                projects:[{type: Schema.Types.ObjectId, ref: 'Construction'}],
+                userType:{
+                    type:String,
+                    default:'client'
+                }         
     },
     {
         timestamps:true

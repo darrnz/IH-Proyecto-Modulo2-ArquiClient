@@ -1,11 +1,11 @@
 //Importaciones
-const {Router} = require('express');
+const { Router } = require('express');
 const router = new Router();
 const bcrypt = require('bcrypt');
 const mongoose = require('mongoose');
 const Client = require('../models/Client.model')
 const Architect = require('../models/Architect.model')
-//const fileUploader = require('../confing/cloudinary.config');
+const fileUploader = require('../confing/cloudinary.config');
 const saltRounds = 10
 
 
@@ -17,14 +17,14 @@ router.get('/signup', (req,res,next) =>{
     res.render('signup')
 })
 
-router.post('/signup', async(req,res,next)=> {
+router.post('/signup',fileUploader.single('logoImg') ,async(req,res,next)=> {
     const{userSign} = req.body
     console.log(userSign)
     const {
-    /*common*/ firstName,lastName,email,extraEmail,password,mobileNumber,officeNumber,
+    /*common*/ firstName,lastName,email,password,mobileNumber,
                 rfc,address,country,city,zipCode,      
     /*archiExclusuve*/ commercialName,fiscalName,bioStory,webPage,facebook,
-                        instagram,twitter,tiktok
+                        instagram,twitter
     } = req.body
 
     //console.log({
@@ -39,32 +39,31 @@ router.post('/signup', async(req,res,next)=> {
         return;
     }
     //pendiense revision de que contenidos van llenos
-   
+     let newClient;
+    let newArchitect;
+
     try{
     const genSaltRounds = await bcrypt.genSalt(saltRounds);
     const passwordHash = await bcrypt.hash(password,genSaltRounds);
-    
-    let newClient;
-    let newArchitect;
     if(userSign === 'client') {
-        newClient = await Client.create({
-            signUpInfo:{firstName,lastName,email,extraEmail,passwordHash,mobileNumber,officeNumber,
-                rfc,address,country,city,zipCode
-            }
+        newClient = Client.create({
+           firstName,lastName,email,passwordHash,mobileNumber,
+                address,country,city,zipCode
+            
         })
-        console.log('Se creó un nuevo cliente', newClient);
+        console.log('Se creó un nuevo cliente', {newClient});
         req.session.currentClient = newClient;
-        res.render('Client/main/welcomeProfile',{valueCookie:req.session.currentClient})
+        res.render('Client/main/welcomeProfile')
     } else {
         newArchitect = Architect.create({
-            /*common*/ businessInformation:{firstName,lastName,email,extraEmail,passwordHash,mobileNumber,
-                        officeNumber,rfc,address,country,city,zipCode,fiscalName,commercialName},      
-            /*archiExclusuve*/ socialInformation:{bioStory,webPage,facebook,
-                                instagram,twitter,tiktok}
+            /*common*/ firstName,lastName,email,passwordHash,mobileNumber,
+                        rfc,address,country,city,zipCode,logoImg: req.file.path ,fiscalName,commercialName,      
+            /*archiExclusuve*/ bioStory,webPage,facebook,
+                                instagram,twitter
         })
         console.log('Se creó una nueva empresa', {newArchitect});
-        req.session.currentClient = newArchitect;
-        res.render('Architect/main/welcomeProfile',{valueCookie:req.session.currentClient})
+        req.session.currentArquitect = newArchitect;
+        res.render('Architect/main/welcomeProfile')
     }
 
     } catch(error) {
@@ -89,47 +88,61 @@ router.post('/login', async(req,res,next)=>{
     const {userSign} = req.body
     const {email,password} = req.body
     console.log(userSign)
-    console.log(email,password)
+    console.log(email)
+    console.log(password)
     if(email === '' || password === '') {
         res.render('login', {errorMessage:"Por favor llena todos los campos."})
     };
-    
+
+
       try{
-          if(userSign === 'client'){
-            let clientLogin =  await Client.findOne({email})
-            console.log(clientLogin.signUpInfo)
+    let clientLogin;
+    let architectLogin;
+    
+          if(userSign === 'client') {
+           clientLogin =  await Client.findOne({email})
+        console.log(clientLogin)
             if (!clientLogin) {
                 res.render('login',{errorMessage:'El usuario no fue encontrado, por favor verifica la información.'})
-                return
-            } else if (bcrypt.compareSync(password,clientLogin.signUpInfo.passwordHash)) {
+                return;
+            } else if (bcrypt.compareSync(password,clientLogin.passwordHash)) {
             req.session.currentClient = clientLogin;
-            res.rendirect('/client-main');
+            res.redirect('/client-main');
         } else {
             res.render('login', {errorMessage:'Contraseña incorrecta, por favor verifica.'})
-        }}   
-    } catch (error) {
-        next(error);
-    }
-    
-        
-    /*} else {
-        try{ architectLogin = await Architect.findOne({email})
-        console.log(architectLogin.businessInformation)
+        }    } 
+     else {
+       architectLogin = await Architect.findOne({email})
+        console.log(architectLogin)
             if (!architectLogin) {
                 res.render('login',{errorMessage:'El usuario no fue encontrado, por favor verifica la información.'})
                 return;
-            } else if (bcrypt.compareSync(password,architectLogin.businessInformation.passwordHash)) {
+            } else if (bcrypt.compareSync(password,architectLogin.passwordHash)) {
             req.session.currentArchitect = architectLogin;
             res.redirect('/architect-main');
         } else {
             res.render('login', {errorMessage:'Contraseña incorrecta, por favor verifica.'})
         }
 
-    } catch (error) {
+    } }catch (error) {
     next(error);
-} }*/
+} 
+
+
 
 });
+
+//LOGOUT
+router.get('/userProfile', (req, res) => {
+    console.log(req.session)
+    res.render('user/userProfile', { userInSession: req.session.currentUser });
+  
+  });
+  
+  router.post('/logout', (req, res) => {
+    req.session.destroy();
+    res.redirect('/');
+  });
 
 
 

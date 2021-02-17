@@ -1,7 +1,36 @@
 const {Schema,model} = require('mongoose');
 
-const constructionSchema = new Schema(
-    {
+const constructionSchema = new Schema({
+    totalSquareMeters:{
+        type:Number,
+        required:true,
+    },
+    address:{
+        type:String,
+    },
+    limitatiosLaws:{
+        type:String,
+    },
+    pinterstAPI:String,
+    specificRequest:String,
+    conceptStep:{
+        type:String,
+    },
+    designStep:{ 
+    },
+    constructionStep:{
+        type:String,
+    },
+    terrainImages:String,
+    client:[{type: Schema.Types.ObjectId, ref: 'Client'}],
+    architects:[{type: Schema.Types.ObjectId, ref: 'Architect'}]
+    
+})
+
+
+
+module.exports = model('Construction', constructionSchema)
+  /* {
         terrainInfo:{
             totalSquareMeters:{
                 type:Number,
@@ -33,9 +62,6 @@ const constructionSchema = new Schema(
                 pduInfo:String,
                 residentialInfo:String,
             },
-            ownership:{
-                //es necesario?
-            },
             terrainImages:[String],
         },
         designClientReq:{
@@ -45,15 +71,10 @@ const constructionSchema = new Schema(
             }
         },
         projectSteps:{
-            conceptStep:{},
-            designStep:{},
-            constructionStep:{}
+            
         }
 
     },
     {
         timestamps:true
-    }
-)
-
-module.exports = model('Construction', constructionSchema)
+    }*/

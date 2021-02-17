@@ -1,1 +1,30 @@
 <h1>Welcome Client</h1>
+
+
+<a href="/add-project">Iniciar un proyecto</a>
+
+{{#if valueCookie}}
+
+  {{#each projectsId.projects}}
+  <div id='actualProjects'>
+     <div> 
+    <p>{{this.address}}</p>
+    </div>
+    <div>
+    <p>{{this._id}}</p>
+    </div>
+    
+   <div>
+      <a href="/project/{{this._id}}/details">Details</a>
+    </div>
+    <div>
+      <a href="/project/{{this.id}}/edit">Edit</a>
+    </div>
+     {{/each}}
+
+
+    </div>
+  </div>
+ 
+
+{{/if}}
