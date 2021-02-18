@@ -21,22 +21,15 @@
             </div>
         </div>
     </div> 
-
     <div class="form-group col"> 
         <label for="address">Dirección</label>
         <input class='form-control' type="text" name="address" id="address" placeholder="Dirección del lugar">
     </div>
-
-    
-
     <div class="form-group col">
         <label for="limitatiosLaws">Información de limitaciones (opcional)</label>
-        <textarea class='form-control' type="textarea" rows="4" name="limitatiosLaws" id="limitatiosLaws" placeholder="Agrega información sobre las limitaciones de construcción">
+        <textarea class='form-control'  rows="4" cols="50" name="limitatiosLaws" id="limitatiosLaws" placeholder="Agrega información sobre las limitaciones de construcción">
         </textarea>
     </div>
-
-
-    
     <br>    
     <p style="font-weight: bold;font-size:22px ">Detalles y concepto</p>
     <div>
@@ -47,7 +40,7 @@
 
         <div class="form-group col">
             <label for="specificRequest">Detalles importantes</label>
-            <textarea rows="4" class='form-control'  name="specificRequest" id="specificRequest" placeholder="Agrega detalles importantes para tu diseño, cantidad de habitaciones, baños, materiales, etc.">
+            <textarea rows="4" cols="50" class='form-control'  name="specificRequest" id="specificRequest" placeholder="Agrega detalles importantes para tu diseño, cantidad de habitaciones, baños, materiales, etc.">
             </textarea>
         </div>
 
@@ -57,19 +50,35 @@
     </div>
     <br>
     <p style="font-weight: bold;font-size:22px ">Selecciona tu despacho</p>
-    <div class="container row d-flex">
-        {{#each availableArchitects}}
-                <div class="col-md-4">
-                    <input class='form-control' type="radio" value="{{this._id}}" name='selectArchitect'>
-                    <hr>
-                    <p>{{this.commercialName}}</p>
-                    <img src="{{this.logoImg}}" alt="">
-                    <a href="{{this.instagram}}"><img src="" alt="IG"></a>
-                </div>
-        {{/each}}
-    </div>
+        <div class=" row d-flex flex-row align-content-center ">
+            {{#each availableArchitects}}
+                    <div class="col-md-3 border m-2">
+                        <input class='form-control m-2' type="radio" value="{{this._id}}" name='selectArchitect'>
+                        <p class="text-center mt-1 " style="font-weight: bold; font-size:20px ">{{this.commercialName}}</p>
+                        <hr>
+                        <div class="row d-flex flex-column justify-content-md-between ">
+                            <img class="p-5" src="{{this.logoImg}}" alt="">
+                            <div class="d-flex m-1 flex-row align-items-s d-flex  align-items-stretch justify-content-center">
+                                {{#if this.webPage }}
+                                    <a class="p-1" href="{{this.webPage}}"><img src="./images/globe.svg" alt="webPage" width="30" height="30"></a>
+                                {{/if}}
 
-    
+                                {{#if this.instagram }}
+                                    <a  class="p-1" href="{{this.instagram}}"><img src="./images/instagram.svg" alt="IG-logo" width="30" height="30"></a>
+                                {{/if}}
+
+                                {{#if this.facebook }}
+                                    <a class="p-1"  href="{{this.facebook}}"><img src="./images/facebook.svg" alt="facebook-logo" width="30" height="30"></a>
+                                {{/if}}
+                                
+                                {{#if this.twitter }}
+                                    <a class="p-1" href="{{this.twitter}}"><img src="./images/twitter.svg" alt="twitter-logo" width="30" height="30"></a>
+                                {{/if}}
+                            </div>
+                        </div>
+                    </div>
+            {{/each}}
+        </div>
     <button class="btn m-1 btn-outline-success" type="submit">Crear Proyecto</button>
     </form>
 </div>
