@@ -1,32 +1,59 @@
-<h1>Hola</h1>
-
 {{#if valueCookie}}
-<p>{{valueCookie.firstName}}</p>
-
+<hr>
+<h3>Bienvenido {{valueCookie.firstName}}</h3>
+<h5>Esta es la cuenta de {{valueCookie.commercialName}}</h5>
 <img src="{{valueCookie.logoImg}}" alt="">
+<br>
+<br>
 
+<div>
 {{#each projectsId.projectConstId}}
-  <div id='actualProjects'style="border: solid;">
-      <div > 
-    <p>{{this.projectName}}</p>
-    </div>  
-     <div> 
-    <p>{{this.address}}</p>
+<div class="col">
+<div class="row p-2 g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+    <div class="col-auto d-none d-sm-block">
+      <img class="bd-placeholder-img" src="{{renderImg}}" alt="" width="500px">  
     </div>
-     <!--<div>
-     {{#each this.architects}}
-    <p>{{this.firstName}}</p>
-      {{/each}}
-    </div>-->
+    <div class="col pl-4 d-flex flex-column position-static">
+
+      <div class="row  d-flex flex-row ">
+        <p style="font-weight: bolder; font-size:33px">{{this.projectName}}</p>
+      </div>
+
+      <div class="row  d-flex flex-row h-100 d-inline-block ">
+          <div class="col d-flex flex-column">
+            <div class="row-auto d-flex flex-column h-100 d-inline-block  ">
+              <p style="font-size:18px"><i>Dirección</i></p>
+              <p style="font-size:22px">{{this.address}}</p>
+            </div>
+
+            <div  class="row-auto  d-flex flex-column h-100 d-inline-block ">
+              {{#each this.client}}
+                <p style="font-size:18px"><i>Datos del cliente</i></p>
+                <div  class="row-auto d-flex flex-column d-inline-block">
+                  <div class="row-auto d-flex flex-row d-inline-block">
+                    <p style="font-size:20px ">{{firstName}}&nbsp;{{lastName}}</p>
+                  </div>
+                  <p style="font-size:20px ">Email: {{email}}</p>
+                </div>
+              {{/each}}
+            </div>
+          </div>
+
+          <div class="col p-1 d-flex  flex-column align-items-center ">
+            <a class="btn m-1 btn-outline-success" style="width: 150px;" href="/project/{{this._id}}/details">Detalles</a>
+            <a class="btn m-1 btn-outline-warning" style="width: 150px;" href="/project/{{this.id}}/edit">Editar</a>
+          </div>
+      </div>
     
-   <div>
-      <a href="/project/{{this._id}}/details">Details</a>
-    </div>
-    <div>
-      <a href="/project/{{this.id}}/edit">Edit</a>
-    </div>
-        </div>
-        
-     {{/each}}
+
+    </div>     
+</div>    
+</div>        
+{{/each}}
+</div>
+
+
+  </div>
+ 
 
 {{/if}}
