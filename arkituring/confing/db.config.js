@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb+srv://ideando:Ideando2290@cluster0.ifeur.mongodb.net/arkituring';
+const MONGODB_URI = process.env.MONGODB_URI
 
 mongoose
   .connect(MONGODB_URI, {
