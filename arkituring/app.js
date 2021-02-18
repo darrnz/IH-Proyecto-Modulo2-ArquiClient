@@ -20,6 +20,8 @@ const path         = require('path');
   });
 */
 require('./confing/db.config');
+require('./confing/cloudinary.config')
+
 
 
 const app = express();
