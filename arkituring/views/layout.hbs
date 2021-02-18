@@ -51,11 +51,13 @@
           </li>      
         {{/if}}
 
-        {{#if valueCookie}}
+        {{#unless valueCookie}}
           <li class="nav-item ">
+          
             <a class="nav-link  " href="/architect-main">Perfil empresa</a>
+          {{/unless}}
           </li>
-        {{/if}}
+       
     
         {{#if valueCookie}}
           <li class="nav-item ">
@@ -80,7 +82,7 @@
    <!--informacion perfil--> 
      {{#if valueCookie}}
       <img src="./images/person-fill.svg" alt=""width="30">
-      <p>{{valueCookie.commercialName}}</p>
+      <p>{{valueCookie.firstName}}</p>
       <img src="{{valueCookie.logoImg}}" alt="" width="50">
       
       {{/if}}
