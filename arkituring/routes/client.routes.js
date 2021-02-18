@@ -36,7 +36,7 @@ router.get('/add-project',async(req,res,next) => {
 
     const architectsList = await Architect.find({})
     console.log(architectsList)
-    res.render('Client/project/project-add-project',{
+    res.render('Client/main/project-add-project',{
         valueCookie:req.session.currentClient,
         availableArchitects:architectsList
     })

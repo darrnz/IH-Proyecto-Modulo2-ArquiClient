@@ -1,17 +1,16 @@
-<!--El cliente podrá editar algunos campos pero no todos, ¿debería verse en otra pagina cada actualizacion?-->
 
-<!--Aqui van los detalles que pone el cliente-->
+
 <p>prueba</p>
 
 {{#if valueCookieUser}}
     <p class="loginCli">1</p>
-{{/if}}
+
 
 
 <form action="/project/{{idEdit}}/edit" method="POST" enctype="multipart/form-data">
 <div class="changes"></div>
 <p>--------------------------</p>
-<script>
+<!--<script>
     
     //const arquitect = document.querySelector('.loginArq').innerHTML
     const client = document.querySelector('.loginCli')
@@ -39,8 +38,18 @@
 
     }
     editUser()
-</script>
+</script>-->
+<div>
+        
+      <div>
+        <label for="totalSquareMeters">Metros cuadrados</label>
+        <input type="number" value='{{viewPRoject.totalSquareMeters}}' name="totalSquareMeters" id="totalSquareMeters" }>
+    </div>
 
+    <div>
+        <label for="address">Dirección</label>
+        <input type="text" name="address" value="{{viewPRoject.address}}" id="address" placeholder="Dirección del lugar" }>
+    </div>`;
     
     <section id="terrainDetails">
     <div>
@@ -83,4 +92,93 @@
 
       </form>
       </div>
+{{/if}}
+
+{{#if valueCookieArq}}
+    <p class="loginCli">1</p>
+
+
+
+<form action="/project/{{idEdit}}/edit" method="POST" enctype="multipart/form-data">
+<div class="changes"></div>
+<p>--------------------------</p>
+<!--<script>
+    
+    //const arquitect = document.querySelector('.loginArq').innerHTML
+    const client = document.querySelector('.loginCli')
+    console.log(client)
+    let editUserType;
+    if(client == null){
+        editUserType=true
+    } 
+    console.log(editUserType)
+    function editUser() {
+        editUserType = editUserType === true? false:true; //////${editUserType? "no edita cliete":"no edita arq"}
+        document.querySelector('.changes').innerHTML =
+        `
+        <div>
+        
+      <div>
+        <label for="totalSquareMeters">Metros cuadrados</label>
+        <input type="number" value='{{viewPRoject.totalSquareMeters}}' name="totalSquareMeters" id="totalSquareMeters" ${editUserType? '':'readonly'}>
+    </div>
+
+    <div>
+        <label for="address">Dirección</label>
+        <input type="text" name="address" value="{{viewPRoject.address}}" id="address" placeholder="Dirección del lugar" ${editUserType? 'readonly':''}>
+    </div>`;
+
+    }
+    editUser()
+</script>-->
+<div>
+        
+
+    <div>
+        <label for="address">Dirección</label>
+        <input type="text" name="address" value="{{viewPRoject.address}}" id="address" placeholder="Dirección del lugar" readonly}>
+    </div>`;
+    
+    <section id="terrainDetails">
+    <div>
+        <label for="projectName">Nombre del proyecto</label>
+        <input type="text" value='{{viewPRoject.projectName}}' name="projectName" id="projectName" >
+    </div>
+    
+
+    
+
+    <div>
+        <label for="limitatiosLaws">Información de limitaciones (opcional)</label>
+        <input type="textarea" value='{{viewPRoject.limitatiosLaws}}' name="limitatiosLaws" id="limitatiosLaws" placeholder="Agrega información sobre las limitaciones de construcción">
+    </div>
+
+    <!--<div>
+        <label for="terrainImages">Imagenes del terreno</label>
+        <input type="file" name="terrainImages" value="{{viewPRoject.terrainImages}}" id="terrainImages">
+    </div>-->
+
+    <div>
+        <label for="renderImg">Render Principal</label>
+        <input type="file" name="renderImg" value="{{viewPRoject.renderImg}}" id="renderImg">
+    </div>
+    </section>
+
+    <section id="conceptDetails">
+
+    <div>
+        <label for="pinterstAPI">Pinterest concept board</label>
+        <input type="text" value='{{viewPRoject.pinterstAPI}}' name="pinterstAPI" id="pinterstAPI" placeholder="Agrega el link de tu tablero de Pinterest">
+    </div>
+
+    <div>
+        <label for="specificRequest">Detalles importantes</label>
+        <input type="textarea" value='{{viewPRoject.specificRequest}}' name="specificRequest" id="specificRequest" placeholder="Agrega detalles importantes para tu diseño, cantidad de habitaciones, baños, materiales, etc.">
+    </div>
+ </section>
+      <button type="submit" class="btn btn-primary">Guardar cambios</button>
+
+      </form>
+      </div>
+{{/if}}
 

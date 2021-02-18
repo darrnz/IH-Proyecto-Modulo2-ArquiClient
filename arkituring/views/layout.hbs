@@ -7,9 +7,10 @@
   <title>{{title}}</title>
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-  
+  <link rel="icon" href="./images/logo.png">
   <link rel="stylesheet" href="./stylesheets/style.css" />
 </head>
+
 <body >
   <nav class="navbar navbar-expand-lg navbar-light py-4 " style="background-color: white;">
   <a class="navbar-brand" style="font-size: 40px;" href="/"><img src="./images/logo.png" alt="" height="45px">     <b>IDEANDO</b> </a>
@@ -20,50 +21,79 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     
     <div>
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-      </li>
-
-
-      <li class="nav-item active">
-        <a class="nav-link " href="/prmoProy">Proyectos / Despachos</a>
-      </li>
-    </ul>
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link " href="/prmoProy">Proyectos / Despachos</a>
+        </li>
+      </ul>
     </div>
 
     <span class="ml-auto navbar-text   ">
+      <ul class="navbar-nav mr-auto">
+        {{#unless valueCookie}}
+          <li class="nav-item ">
+            <a class="nav-link active" href="/signup">Signup</a>
+          </li>
+        {{/unless}}
 
-    <ul class="navbar-nav mr-auto">
-        <li class="nav-item ">
-        <a class="nav-link active" href="/signup">Signup</a>
-      </li>
-      
-      <li class="nav-item ">
-        <a class="nav-link  " href="/login">Login</a>
-      </li>
+        {{#unless valueCookie}}
+          <li class="nav-item ">
+            <a class="nav-link  " href="/login">Login</a>
+          </li>
+        {{/unless}}
 
-      <li class="nav-item ">
-        <a class="nav-link  " href="/client-main">Perfil client</a>
-      </li>      
+        {{#if valueCookie}}
+          <li class="nav-item ">
+            <a class="nav-link  " href="/client-main">Perfil client</a>
+          </li>      
+        {{/if}}
 
-      <!--<li class="nav-item ">
-        <a class="nav-link  " href="/architect-main">Perfil empresa</a>
-      </li>-->  
+        {{#if valueCookie}}
+          <li class="nav-item ">
+            <a class="nav-link  " href="/architect-main">Perfil empresa</a>
+          </li>
+        {{/if}}
+    
+        {{#if valueCookie}}
+          <li class="nav-item ">
+            <form action="/logout" method="post">
+              <button class="nav-link " type="submit">Logout</button>
+            </form>
+          </li>
+        {{/if}}
 
-      <li class="nav-item ">
-        <form action="/logout" method="post">
-        <button class="nav-link " type="submit">Logout</button>
-        </form>
-        
-      </li>
       </ul>
-      </span>
+    </span>
   </div>
+
+  <!--prueba-->
+   {{#if valueCookieArq}}
+      <p>HOlaaaaaa</p>
+      {{/if}}
+  {{#if valueCookieUser}}
+      <p>Perrrrrroooooo</p>
+  {{/if}}
+
+   <!--informacion perfil--> 
+     {{#if valueCookie}}
+      <img src="./images/person-fill.svg" alt=""width="30">
+      <p>{{valueCookie.commercialName}}</p>
+      <img src="{{valueCookie.logoImg}}" alt="" width="50">
+      
+      {{/if}}
+
+      {{#if res.locals}}
+    <p>lolololo</p>
+    {{/if}}
+
+
 </nav>
 
   
-  <main role="main">
+  <main >
   {{{body}}}
 </main>
 
