@@ -1,4 +1,7 @@
-<div id="signUp-content">
+<div class="mt-5" id="signUp-content">
+<h2>¡Incribete!</h2>
+
+<br>
     <div class="allForm"></div>
    
  <script>
@@ -8,26 +11,20 @@
          selectUserType = selectUserType === true ? false : true;
 
     document.querySelector('.allForm').innerHTML =`
-    <form action="/signup" method="POST" enctype="multipart/form-data">
-
-    <p>Cambiar a: 
-           
-            <input type="button" onclick='changeUser()' id='client' name="userType"
-             value="Cambiar"></p>
-            
-           
-   //<!--formulario cliente-->
+    <form class="form-signin " action="/signup" method="POST" enctype="multipart/form-data">
     <div>
-                 <!--tag para mandar a Arch o Client-->
-            <div >    
-            <input class="noDisplay" type="text" style="display:none" name="userSign" value="${!selectUserType? 'architect':'client'}"id="userSign">
-            </div>
+        
+        <div > <!--tag para mandar a Arch o Client-->   
+        <input class="noDisplay" type="text" style="display:none" name="userSign" value="${!selectUserType? 'architect':'client'}"id="userSign">
+        </div>
 
     <h3>Soy: ${!selectUserType? 'Empresa':'Cliente'}</h3>
-    <br>
+            <input type="button" onclick='changeUser()' id='client' name="userType"
+             value="Cambiar" class="btn btn-lg fw-bold border-black bg-black"></p>
         <fieldset>  
-        <h3>Información de contacto</h3>
-        <br>
+           <br>   
+        <h4>Información de contacto</h4>
+      
         <div class="row">
         <div class="form-group col">
             <label for="firstName">Nombre(s)</label>
@@ -92,16 +89,20 @@
         ` 
         
         + `${selectUserType? 
-        `<button type="submit" class="btn btn-primary block-center ">Create account</button>
-        </section>
+
+        `
+        <div class=" d-flex align-content-center justify-content-center ">
+        <button type="submit" class="btn-lg btn-outline-primary">Create account</button>
+        </div>
+        
         {{#if errorMessage}}
         <p class="error">{{errorMessage}}</p>
         {{/if}}  </div>
         </form>`:
         `<!--formularioa extra para arquitectos-->
         <br>
-         <fieldset>
-        <section id="archForm">
+  
+ 
         
         <h3>Información Empresa</h3>
         <br>
@@ -121,9 +122,8 @@
             <label for="logoImg">Logotipo</label>
             <input type="file"  class='form-control' name="logoImg" style="height:50px;"  id="logoImg">
         </div>
-        </fieldset>
+
     <br>
-    <fieldset>
     
     <h3>Bio and Social Media</h3>
     <br>
@@ -136,35 +136,31 @@
             </div>   
         </div>     
 
-        <div class="row">
-        <div "form-group col">
-            <img src="./images/globe.svg" alt="IG-logo" width="30" height="30">
-            <input type="text"  class='form-control' name="webPage" id="webPage" style="height:50px;"  placeholder="Pega el link de tu página web">
-        </div>
-
-
-        <div "form-group col">
+        <div class="form-group mt-4 col d-flex flex-row justify-content-around ">
             
-            <img src="./images/facebook.svg" alt="facebook-logo" width="30" height="30">
-            <input type="text" class='form-control' name="facebook" id="facebook" style="height:50px;"  placeholder="Pega el link de tu perfil de Facebook">
-        </div>
-
-        <div "form-group col">
-            
-            <img src="./images/instagram.svg" alt="IG-logo" width="30" height="30">
-            <input type="text" name="instragram" class='form-control' id="instragram" style="height:50px;"  placeholder="Pega el link de tu perfil de Instragram">
-        </div>    
-
-      <div "form-group col">
-            
-            <img src="./images/twitter.svg" alt="twitter-logo" width="30" height="30">
-            <input type="text" name="twitter" class='form-control' id="twitter" style="height:50px;"  placeholder="Pega el link de tu perfil de Twitter">
-        </div>
+                <div "col ">
+                    <img src="./images/globe.svg" alt="IG-logo" width="30" height="30">
+                    <input type="text"  class='mt-3 form-control' name="webPage" id="webPage" style="height:50px;"  placeholder="Pega el link de tu página web">
+                </div>
+                <div "col"> 
+                    <img src="./images/facebook.svg" alt="facebook-logo" width="30" height="30">
+                    <input type="text" class='mt-3 form-control' name="facebook" id="facebook" style="height:50px;"  placeholder="Pega el link de tu perfil de Facebook">
+                </div>
+                <div "col  ">
+                    <img src="./images/instagram.svg" alt="IG-logo" width="30" height="30">
+                    <input type="text" name="instragram" class='mt-3 form-control' id="instragram" style="height:50px;"  placeholder="Pega el link de tu perfil de Instragram">
+                </div>    
+                <div "col">
+                    <img class="d-flex align-content-center justify-content-center"src="./images/twitter.svg" alt="twitter-logo" width="30" height="30">
+                    <input type="text" name="twitter" class='mt-3 form-control' id="twitter" style="height:50px;"  placeholder="Pega el link de tu perfil de Twitter">
+                </div>
+        
         </div>   
-        </fieldset>
-
-        <button type="submit" class="btn btn-primary">Create account</button>
-        </section>'}
+        <br>
+        <div class=" d-flex align-content-center justify-content-center ">
+        <button type="submit" class="btn-lg btn-outline-primary">Create account</button>
+        </div
+        
         {{#if errorMessage}}
         <p class="error">{{errorMessage}}</p>
         {{/if}}

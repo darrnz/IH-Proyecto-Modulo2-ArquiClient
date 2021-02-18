@@ -11,20 +11,16 @@
         document.querySelector('.loginTags').innerHTML =`
     <form class="form-signin " action="/login" method="POST">
 
-    <img class="mb-4" src="./images/logo.png" alt="" width="72" height="72">
-    <h4><b>IDEANDO</b></h4>
-    <br>
-    <br>
-    
-
-        
-
-              <!--tag para mandar a Arch o Client-->
+            <img class="mb-4" src="./images/logo.png" alt="" width="72" height="72">
+            <h4><b>IDEANDO</b></h4>
+            <br>
+            <br>
+                <!--tag para mandar a Arch o Client-->
             <div>    
             <input class="noDisplay" type="text" style="display:none" name="userSign" value="${!selectLoginUser? 'architect':'client'}"id="userSign">
             </div>
 
-<h3>Soy: ${!selectLoginUser? 'Empresa':'Cliente'}</h3>
+        <h3>Soy: ${!selectLoginUser? 'Empresa':'Cliente'}</h3>
         <div>
             <input type="button" onclick='changeLoginUser()' id='client' name="userType"
              value="Cambiar" class="btn btn-lg fw-bold border-black bg-black">
