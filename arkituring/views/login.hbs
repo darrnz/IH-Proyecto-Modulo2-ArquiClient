@@ -1,6 +1,7 @@
 
 
 <h1 class="h2 mb-10 font-weight-normal text-center">Bienvenido</h1>
+
     <div class="mt-5 container loginTags text-center block-center "></div>
 <script>
 
@@ -9,7 +10,11 @@
         selectLoginUser = selectLoginUser === true ?  false : true;
         document.querySelector('.loginTags').innerHTML =`
     <form class="form-signin " action="/login" method="POST">
-    <img class="mb-4" src="./images/4ad79aa01e9bba788cd35453a9325fa0.png" alt="" width="72" height="72">
+
+    <img class="mb-4" src="./images/logo.png" alt="" width="72" height="72">
+    <h4><b>IDEANDO</b></h4>
+    <br>
+    <br>
     
 
         
@@ -22,7 +27,7 @@
 <h3>Soy: ${!selectLoginUser? 'Empresa':'Cliente'}</h3>
         <div>
             <input type="button" onclick='changeLoginUser()' id='client' name="userType"
-             value="Cambiar">
+             value="Cambiar" class="btn btn-lg fw-bold border-black bg-black">
         </div>
 
        

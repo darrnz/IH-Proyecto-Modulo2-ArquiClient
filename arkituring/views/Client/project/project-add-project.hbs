@@ -1,69 +1,76 @@
 <!--Aqui van los detalles que pone el cliente-->
 {{#if valueCookie}}
 
-<div>
+<div class="ml-10 mr-10">
     <form action="/add-project" method="POST" enctype="multipart/form-data">
-    <section id="terrainDetails">
-    <div>
-        <label for="projectName">Nombre del proyecto</label>
-        <input type="text" value='{{viewPRoject.projectName}}' name="projectName" id="projectName" placeholder="Nombre con el que identificarás tu proyecto">
-    </div>
-    
-    <div>
-        <label for="totalSquareMeters">Metros cuadrados</label>
-        <input type="number" name="totalSquareMeters" id="totalSquareMeters">
-    </div>
+    <br>
+    <p style="font-weight: bold;font-size:22px ">Información del proyecto</p>
+    <div class="form-group col">   
+        <div class="form-group row">
+            <div class="col">
+                <label for="projectName">Nombre del proyecto</label>
+                <input  class='form-control'type="text" value='{{viewPRoject.projectName}}' name="projectName" id="projectName" placeholder="Nombre con el que identificarás tu proyecto">
+            </div>   
+            <div class="col">
+                <label for="totalSquareMeters">Metros cuadrados</label>
+                <input class='form-control' type="number" name="totalSquareMeters" id="totalSquareMeters">
+            </div>   
+            <div class=" col">
+                <label for="terrainImages">Imagenes del terreno</label>
+                <input class='form-control' type="file" name="terrainImages" id="terrainImages">
+            </div>
+        </div>
+    </div> 
 
-    <div>
+    <div class="form-group col"> 
         <label for="address">Dirección</label>
-        <input type="text" name="address" id="address" placeholder="Dirección del lugar">
+        <input class='form-control' type="text" name="address" id="address" placeholder="Dirección del lugar">
     </div>
 
     
 
-    <div>
+    <div class="form-group col">
         <label for="limitatiosLaws">Información de limitaciones (opcional)</label>
-        <input type="textarea" name="limitatiosLaws" id="limitatiosLaws" placeholder="Agrega información sobre las limitaciones de construcción">
+        <textarea class='form-control' type="textarea" rows="4" name="limitatiosLaws" id="limitatiosLaws" placeholder="Agrega información sobre las limitaciones de construcción">
+        </textarea>
     </div>
 
-    <div>
-        <label for="terrainImages">Imagenes del terreno</label>
-        <input type="file" name="terrainImages" id="terrainImages">
-    </div>
+
     
-    </section>
-
-    <section id="conceptDetails">
-
+    <br>    
+    <p style="font-weight: bold;font-size:22px ">Detalles y concepto</p>
     <div>
-        <label for="pinterstAPI">Pinterest concept board</label>
-        <input type="text" name="pinterstAPI" id="pinterstAPI" placeholder="Agrega el link de tu tablero de Pinterest">
-    </div>
+        <div class="form-group col">
+            <label for="pinterstAPI">Agrega el link de tu board conceptual de Pinterest</label>
+            <img src="./images/pinterest.png" alt="" width="20"><input class='form-control' type="text" name="pinterstAPI" id="pinterstAPI" placeholder="Agrega el link de tu tablero de Pinterest">
+        </div>
 
-    <div>
-        <label for="specificRequest">Detalles importantes</label>
-        <input type="textarea" name="specificRequest" id="specificRequest" placeholder="Agrega detalles importantes para tu diseño, cantidad de habitaciones, baños, materiales, etc.">
-    </div>
+        <div class="form-group col">
+            <label for="specificRequest">Detalles importantes</label>
+            <textarea rows="4" class='form-control'  name="specificRequest" id="specificRequest" placeholder="Agrega detalles importantes para tu diseño, cantidad de habitaciones, baños, materiales, etc.">
+            </textarea>
+        </div>
 
         <div>
-        <input style='display:none' value='{{valueCookie._id}}' type="text" name="clientId" id="clientId">
+            <input style='display:none' value='{{valueCookie._id}}' type="text" name="clientId" id="clientId">
+        </div>
+    </div>
+    <br>
+    <p style="font-weight: bold;font-size:22px ">Selecciona tu despacho</p>
+    <div class="container row d-flex">
+        {{#each availableArchitects}}
+                <div class="col-md-4">
+                    <input class='form-control' type="radio" value="{{this._id}}" name='selectArchitect'>
+                    <hr>
+                    <p>{{this.commercialName}}</p>
+                    <img src="{{this.logoImg}}" alt="">
+                    <a href="{{this.instagram}}"><img src="" alt="IG"></a>
+                </div>
+        {{/each}}
     </div>
 
-        <p>Select you option</p>
-        
-    {{#each availableArchitects}}
-            <div>
-                <input type="radio" value="{{this._id}}" name='selectArchitect'>
-                <p></p>
-                <p>{{this.commercialName}}</p>
-                <img src="{{this.logoImg}}" alt="">
-                <a href="{{this.instagram}}"><img src="" alt="IG"></a>
-            </div>
-    {{/each}}
-
-
-    </section>
-      <button type="submit">Crear Proyecto</button>
+    
+    <button class="btn m-1 btn-outline-success" type="submit">Crear Proyecto</button>
     </form>
 </div>
 

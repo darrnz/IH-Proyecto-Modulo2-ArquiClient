@@ -1,8 +1,13 @@
+html{
+  
+}
 body {
+ margin-left: 15px;
+ margin-right: 15px;
+ margin-top: 2px;
  
-
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  background-color:  #white;
+  
+  background-color:white;
 }
 
 a {
