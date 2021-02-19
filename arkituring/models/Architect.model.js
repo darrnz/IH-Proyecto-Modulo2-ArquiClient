@@ -4,7 +4,8 @@ const archiSchema = new Schema(
     {
                 commercialName:{
                     type:String,
-                    trim:true,     
+                    trim:true, 
+                    required: [true, "Agrega tu nombre comercial, puedes copiar tu primer nombre"],  
                 },
                 logoImg:String,
                 firstName: {
@@ -14,7 +15,6 @@ const archiSchema = new Schema(
                 lastName: {
                     type:String,
                     trim:true,
-                    requiered: [true, "Por favor completa todos los datos"],
                 },
                 email: {
                     type:String,
@@ -33,18 +33,15 @@ const archiSchema = new Schema(
                 },
                 mobileNumber:{
                     type:String,
-                    required:[true,"Agregue un número de teléfono válido"]
                 }, 
                 rfc:{
                     type:String,
                 },
                 address:{
                     type:String,
-                    required:[true,'Por favor agregue su dirección actual']
                 },
                 country:{
                     type:String,
-                    required:[true,'Por favor agregue su país']
                 },
                 city:{
                     type:String,

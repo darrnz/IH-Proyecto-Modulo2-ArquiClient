@@ -12,8 +12,11 @@
                         <div class="px-4 py-3">
                           <h5 class="mb-0">Despacho asignado: </h5>
                           <div class="p-4 rounded shadow-sm bg-light">
-                            <p class="font-italic mb-0">W</p>
-                            <p class="font-italic mb-0">w</p>
+                            <img src="{{viewProject.architects.[0].logoImg}}" alt="logo" height="60">
+                            <p class="font-italic mb-0">{{viewProject.architects.[0].commercialName}}</p>
+                            <p class="font-italic mb-0">{{viewProject.architects.[0].city}}&nbsp;{{viewProject.architects.[0].country}}</p>
+                            <p class="font-italic mb-0">{{viewProject.architects.[0].email}}</p>
+                            <a class="font-italic mb-0" href="{{viewProject.architects.[0].webPage}}">{{viewProject.architects.[0].webPage}}</a>
                           </div>
                         </div>
 

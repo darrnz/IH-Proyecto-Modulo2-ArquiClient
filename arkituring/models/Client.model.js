@@ -20,7 +20,7 @@ const clientSchema = new Schema(
                     unique:true,
                     lowercase:true,
                     trim:true,
-                    match:[/^\S+@\S+\.\S+$/,"Porfavor usa un mail valido"]
+                    match:[/^\S+@\S+\.\S+$/,"Porfavor usa un correo electrónico válido"]
                 },
                 passwordHash:{
                     type:String,
@@ -28,15 +28,15 @@ const clientSchema = new Schema(
                 },
                 mobileNumber:{
                     type:String,
-                    required:[true,"Agregue un número de teléfono válido"]
+
                 },
                 address:{
                     type:String,
-                    required:[true,'Por favor agregue su dirección actual']
+
                 },
                 country:{
                     type:String,
-                    required:[true,'Por favor agregue su país']
+
                 },
                 city:{
                     type:String,

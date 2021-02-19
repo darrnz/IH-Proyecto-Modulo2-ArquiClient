@@ -59,7 +59,9 @@ router.post('/add-project',fileUploader.single('terrainImages'), async(req,res,n
 router.get('/project/:id/details', async(req,res,next) => {
     if (req.session.currentClient) {
       const id = req.params.id;
-      const selectedProject = await Construction.findById(id);
+      const toPopulate = [ { path: 'architects', populate: { path: 'architects' } } ]        
+      const selectedProject = await Construction.findById(id).populate(toPopulate) ;
+      console.log(selectedProject)
       res.render('Client/main/projects/project-main', 
       {
         viewProject:selectedProject,
