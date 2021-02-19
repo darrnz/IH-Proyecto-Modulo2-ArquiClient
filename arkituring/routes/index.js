@@ -14,6 +14,7 @@ router.get('/', (req, res, next) => {
            valueCookie:req.session.currentClient
         })
     } 
+    
     res.render('index')
     
 });

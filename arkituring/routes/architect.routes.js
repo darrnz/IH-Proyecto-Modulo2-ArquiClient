@@ -24,7 +24,9 @@ router.get ('/architect-main', async(req,res) =>{
 router.get('/project/:id/details-arq',async(req,res,next)=>{
     if (req.session.currentArchitect) {
         const id = req.params.id;
-        const selectedProject = await Construction.findById(id);
+        const toPopulate = [ { path: 'client', populate: { path: 'client' } } ]        
+        const selectedProject = await Construction.findById(id).populate(toPopulate) ;
+        console.log(selectedProject)
         res.render('Architect/projects/project-main-archi', 
             {
                 viewProject:selectedProject,
@@ -60,6 +62,13 @@ router.post('/project/:id/edit-arq',fileUploader.single('renderImg'),async(req,r
     res.redirect(`/project/${id}/details-arq`)
 });
 
+router.post('/project/:id/delete', async(req,res,next) => {
+    const id = req.params.id
+    console.log(id)
+    await Construction.findByIdAndRemove(id);
+    console.log(`Eliminaste el proyecto`, id);
+    res.redirect('/architect-main');
+});
 
 //EXPORTACION
 module.exports = router;

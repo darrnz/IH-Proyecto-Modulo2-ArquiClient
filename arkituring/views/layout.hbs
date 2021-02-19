@@ -33,17 +33,17 @@
       <ul class="navbar-nav mr-auto">
         {{#unless valueCookie}}
           <li class="nav-item ">
-            <a class="nav-link active" href="/signup">Signup</a>
+            <a class="nav-link active" href="/signup">Inscribirse</a>
           </li>
         {{/unless}}
 
         {{#unless valueCookie}}
           <li class="nav-item ">
-            <a class="nav-link  " href="/login">Login</a>
+            <a class="nav-link  " href="/login">Iniciar Sesión</a>
           </li>
         {{/unless}}
 
-        {{#if valueCookie.firstName}}
+        {{#if valueCookie.activeClient}}
           <li class="nav-item ">
             <a class="nav-link  " href="/client-main">Perfil</a>
           </li>      
@@ -51,16 +51,14 @@
 
         {{#if valueCookie.commercialName}}
           <li class="nav-item ">
-          
-            <a class="nav-link  " href="/architect-main">Perfil</a>
-          {{/if}}
+          <a class="nav-link  " href="/architect-main">Perfil</a>
           </li>
-       
+        {{/if}}
     
         {{#if valueCookie}}
           <li class="nav-item mx-2">
             <form action="/logout" method="post">
-              <button class="nav-link btn btn-light" type="submit">Logout</button>
+              <button class="nav-link btn btn-light" type="submit">Cerrar Sesión</button>
             </form>
           </li>
         {{/if}}

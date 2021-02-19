@@ -57,12 +57,12 @@ const index = require('./routes/index');
 const auth = require('./routes/auth.routes');
 const architect = require('./routes/architect.routes');
 const clients = require('./routes/client.routes');
-const projects = require('./routes/project.route');
+
 app.use('/', index);
 app.use('/', auth);
 app.use('/', architect);
 app.use('/', clients);
-app.use('/', projects);
+
 
 
 

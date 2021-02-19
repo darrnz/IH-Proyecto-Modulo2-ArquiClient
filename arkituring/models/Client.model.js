@@ -50,7 +50,11 @@ const clientSchema = new Schema(
                 userType:{
                     type:String,
                     default:'client'
-                }         
+                },
+                activeClient:{
+                    type:String,
+                    default:'activeClient'
+                }             
     },
     {
         timestamps:true

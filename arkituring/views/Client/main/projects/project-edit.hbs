@@ -12,9 +12,9 @@
                         <label for="projectName" class='pt-1'>Nombre del proyecto</label>
                         <input type="text" class='form-control pb-1' value='{{viewProject.projectName}}' name="projectName" id="projectName" >
                         <label for="totalSquareMeters" class='pt-1'>Metros cuadrados</label>
-                        <input type="number" class='form-control pb-1' value='{{viewPRoject.totalSquareMeters}}' name="totalSquareMeters" id="totalSquareMeters">
+                        <input type="number" class='form-control pb-1' value='{{viewProject.totalSquareMeters}}' name="totalSquareMeters" id="totalSquareMeters">
                         <label for="address" class='pt-1'>Dirección</label>
-                        <input type="text" class='form-control pb-1' name="address" value="{{viewPRoject.address}}" id="address" placeholder="Dirección del lugar">
+                        <input type="text" class='form-control pb-1' name="address" value="{{viewProject.address}}" id="address" placeholder="Dirección del lugar">
                         <label for="limitatiosLaws" class='pt-1'>Información de limitaciones (opcional)</label>
                         <input type="text" class='form-control pb-1' value='{{viewProject.limitatiosLaws}}' name="limitatiosLaws" id="limitatiosLaws" placeholder="Agrega información sobre las limitaciones de construcción">
                         <label for="terrainImages" class='pt-1'>Imagenes del terreno</label>
@@ -24,7 +24,7 @@
             <p style="font-weight: bold;font-size:22px ">Detalles y concepto</p> 
             <div class="form-group col">
                 <label for="pinterstAPI" class='pt-1'>Agrega el link de tu board conceptual de Pinterest</label>
-                <img src="./images/pinterest.png" value='{{viewProject.pinterstAPI}}' alt="" width="20"><input class='form-control' type="text" name="pinterstAPI" id="pinterstAPI" placeholder="Agrega el link de tu tablero de Pinterest">
+                <img src="/images/pinterest.png"  alt="" width="20"><input class='form-control' type="text" name="pinterstAPI" id="pinterstAPI" placeholder="Agrega el link de tu tablero de Pinterest" value='{{viewProject.pinterstAPI}}'>
                 <label for="specificRequest" class='pt-1'>Detalles importantes</label>
                 <input type="text" class='form-control' value='{{viewProject.specificRequest}}'  name="specificRequest" id="specificRequest" placeholder="Agrega detalles importantes para tu diseño, cantidad de habitaciones, baños, materiales, etc.">
             </div>

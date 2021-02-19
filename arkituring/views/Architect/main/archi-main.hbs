@@ -43,6 +43,10 @@
             <div class="col p-1 d-flex  flex-column align-items-center ">
               <a class="btn m-1 btn-outline-success" style="width: 150px;" href="/project/{{this._id}}/details-arq">Detalles</a>
               <a class="btn m-1 btn-outline-warning" style="width: 150px;" href="/project/{{this.id}}/edit-arq">Editar</a>
+              
+              <form action="/project/{{this._id}}/delete" method="post">
+                <button type="submit" class="btn m-1 btn-outline-danger" style="width: 150px;" >Eliminar </button>
+              </form>
             </div>
         </div>
       

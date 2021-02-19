@@ -30,7 +30,7 @@ router.get ('/client-main', async(req,res) => {
 router.get('/add-project', async(req,res,next) => {
     if (req.session.currentClient) {
         const architectsList = await Architect.find({});
-        res.render('Client/main/project-add-project',{
+        res.render('Client/main/projects/project-add-project',{
             valueCookie:req.session.currentClient,
             availableArchitects:architectsList,
         });
@@ -62,7 +62,7 @@ router.get('/project/:id/details', async(req,res,next) => {
       const selectedProject = await Construction.findById(id);
       res.render('Client/main/projects/project-main', 
       {
-        viewPRoject:selectedProject,
+        viewProject:selectedProject,
         valueCookie:req.session.currentClient,
       });
     };
@@ -75,7 +75,7 @@ router.get('/project/:id/edit', async(req,res,next) => {
         res.render('Client/main/projects/project-edit', 
         {
             idEdit:id,
-            viewPRoject:selectedProject,
+            viewProject:selectedProject,
             valueCookie:req.session.currentClient,
         });
     };
