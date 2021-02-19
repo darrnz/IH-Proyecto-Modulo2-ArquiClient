@@ -83,11 +83,11 @@ router.get('/project/:id/edit', async(req,res,next) => {
     };
 });
   
-router.post('/project/:id/edit', fileUploader.single('terrainImages'), async(req,res,next) => {
+router.post('/project/:id/edit',  async(req,res,next) => {
     const id = req.params.id;
     const { limitatiosLaws,pinterstAPI,specificRequest,totalSquareMeters,address,projectName } = req.body;
     const editedProject = await Construction.findByIdAndUpdate(id,
-                    { $set:{ limitatiosLaws,pinterstAPI,specificRequest,totalSquareMeters, address,projectName,terrainImages:req.file.path } },
+                    { $set:{ limitatiosLaws,pinterstAPI,specificRequest,totalSquareMeters, address,projectName} },
                     {new:true});   
     console.log('Haz editado un nuevo proyecto',editedProject);
     res.redirect(`/project/${id}/details`);

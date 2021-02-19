@@ -5,7 +5,7 @@
 <h2 >Edición de proyecto</h2>
 <br>
     <div >
-        <form action="/project/{{idEdit}}/edit" method="POST" enctype="multipart/form-data">
+        <form action="/project/{{idEdit}}/edit" method="POST" >
             <p style="font-weight: bold;font-size:22px ">Información General</p> 
             <div class="ml-10 mr-10">
                 <div class="form-group col pb-1">
@@ -17,9 +17,7 @@
                         <input type="text" class='form-control pb-1' name="address" value="{{viewProject.address}}" id="address" placeholder="Dirección del lugar">
                         <label for="limitatiosLaws" class='pt-1'>Información de limitaciones (opcional)</label>
                         <input type="text" class='form-control pb-1' value='{{viewProject.limitatiosLaws}}' name="limitatiosLaws" id="limitatiosLaws" placeholder="Agrega información sobre las limitaciones de construcción">
-                        <label for="terrainImages" class='pt-1'>Imagenes del terreno</label>
-                        <input type="file" class='form-control pb-1' name="terrainImages" value="{{viewProject.terrainImages}}" id="terrainImages">                
-                         <small class="form-text text-muted"><b>Al editar revisa que tu imagen esté correctamente cargada.</b></small >
+                        
                 </div>  
             </div>  
             <p style="font-weight: bold;font-size:22px ">Detalles y concepto</p> 
