@@ -47,9 +47,7 @@ router.post('/signup',fileUploader.single('logoImg') ,async(req,res,next)=> {
         })
         console.log('Se creó un nuevo cliente', newClient);
         req.session.currentClient = newClient;
-        res.render('Client/main/welcomeProfile', {
-            valueCookie:req.session.currentClient
-        })
+        res.redirect('/client-main')
     } else {
         newArchitect = Architect.create({
             /*common*/ firstName,lastName,email,passwordHash,mobileNumber,
@@ -59,9 +57,7 @@ router.post('/signup',fileUploader.single('logoImg') ,async(req,res,next)=> {
         })
         console.log('Se creó una nueva empresa', newArchitect);
         req.session.currentArquitect = newArchitect;
-        res.render('Architect/main/welcomeProfile',{
-            valueCookie:req.session.currentArquitect
-        })
+        res.redirect('/architect-main')
     }
 
     } catch(error) {
