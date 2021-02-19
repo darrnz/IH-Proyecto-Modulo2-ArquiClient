@@ -1,15 +1,11 @@
-html{
-  
-}
+
 body {
- margin-left: 15px;
- margin-right: 15px;
- margin-top: 2px;
- 
-  
-  background-color:white;
+ background-color: white;
 }
 
+main{
+margin: 0;
+}
 a {
   color:black;
 }
@@ -28,17 +24,7 @@ a {
   width: 100%;
   height: 2.5rem;            /* Footer height */
   margin-bottom: 20px;
-  margin-top: 20px;
 }
 
-.carimage{
-  
-  height: 500px;
-
-}
-
-.marketing{
-  margin-top: 80px;
-}
 
 

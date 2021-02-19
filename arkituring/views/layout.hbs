@@ -5,15 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>{{title}}</title>
-
+  <link rel="icon" href="/images/logo.png">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-  <link rel="icon" href="./images/logo.png">
-  <link rel="stylesheet" href="./stylesheets/style.css" />
+  <link rel="stylesheet" href="/stylesheets/style.css" />
 </head>
 
 <body >
-  <nav class="navbar navbar-expand-lg navbar-light py-4 " style="background-color: white;">
-  <a class="navbar-brand" style="font-size: 40px;" href="/"><img src="./images/logo.png" alt="" height="45px">     <b>IDEANDO</b> </a>
+  <nav class="navbar navbar-expand-lg navbar-light py-4 mt-auto d-flex h-100 p-3 mx-auto " style="background-color: white;">
+  <a class="navbar-brand" style="font-size: 40px;" href="/"><img src="/images/logo.png" alt="" height="45px">     <b>IDEANDO</b> </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -22,12 +21,11 @@
     
     <div>
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-        </li>
+        {{#if valueCookie.firstName}}
         <li class="nav-item active">
           <a class="nav-link " href="/prmoProy">Proyectos / Despachos</a>
         </li>
+        {{/if}}
       </ul>
     </div>
 
@@ -45,24 +43,24 @@
           </li>
         {{/unless}}
 
-        {{#if valueCookie}}
+        {{#if valueCookie.firstName}}
           <li class="nav-item ">
-            <a class="nav-link  " href="/client-main">Perfil client</a>
+            <a class="nav-link  " href="/client-main">Perfil</a>
           </li>      
         {{/if}}
 
-        {{#unless valueCookie}}
+        {{#if valueCookie.commercialName}}
           <li class="nav-item ">
           
-            <a class="nav-link  " href="/architect-main">Perfil empresa</a>
-          {{/unless}}
+            <a class="nav-link  " href="/architect-main">Perfil</a>
+          {{/if}}
           </li>
        
     
         {{#if valueCookie}}
-          <li class="nav-item ">
+          <li class="nav-item mx-2">
             <form action="/logout" method="post">
-              <button class="nav-link " type="submit">Logout</button>
+              <button class="nav-link btn btn-light" type="submit">Logout</button>
             </form>
           </li>
         {{/if}}
@@ -71,42 +69,29 @@
     </span>
   </div>
 
-  <!--prueba-->
-   {{#if valueCookieArq}}
-      <p>Arqui</p>
-      {{/if}}
-  {{#if valueCookieUser}}
-      <p>USer</p>
-  {{/if}}
-
    <!--informacion perfil--> 
      {{#if valueCookie}}
-      <img src="./images/person-fill.svg" alt=""width="30">
+      <img src="/images/person-fill.svg" alt=""width="30">
       <p>{{valueCookie.firstName}}</p>
       <img src="{{valueCookie.logoImg}}" alt="" width="50">
-      
       {{/if}}
-
-      {{#if res.locals}}
-    <p>lolololo</p>
-    {{/if}}
 
 
 </nav>
 
-  
+
   <main >
   {{{body}}}
-</main>
+  </main>
 
-<footer  id='footer' class="footer container  ">
-  <div class=>
+<footer  id='footer' class="footer">
+  <div class= 'container'>
   <hr class="featurette-divider">
-  <p>© 2021 {{title}}, Inc. · <a href="#">Privacy</a> · <a href="#">Terms</a></p>
+  <p class="text-muted"> © 2021 {{title}}, Inc. · <a href="#">Privacy</a> · <a href="#">Terms</a></p>
   </div>  
 </footer>
-  <script src="/javascripts/script.js"></script>
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="/javascripts/script.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <script async defer src="//assets.pinterest.com/js/pinit.js"></script>

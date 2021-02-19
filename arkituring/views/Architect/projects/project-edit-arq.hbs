@@ -1,0 +1,77 @@
+{{#if valueCookie}}
+<hr class="mx-4">
+<div class="mx-4">
+    <hr>
+    <h2>Edición de proyecto</h2>
+    <br>
+
+    <div>
+        <form action="/project/{{idEdit}}/edit-arq" method="POST" enctype="multipart/form-data">
+            <div class="changes"></div>
+
+                <div>
+                    <div>
+                        <label for="totalSquareMeters">Metros cuadrados</label>
+                        <input type="number" value='{{viewProject.totalSquareMeters}}' name="totalSquareMeters" id="totalSquareMeters" ${editUserType? '':'readonly'}>
+                    </div>
+
+                    <div>
+                        <label for="address">Dirección</label>
+                        <input type="text" name="address" value="{{viewProject.address}}" id="address" placeholder="Dirección del lugar" ${editUserType? 'readonly':''}>
+                    </div>
+                </div>`;
+
+
+        <p style="font-weight: bold;font-size:22px ">Información General</p> 
+        <div class="ml-10 mr-10">
+
+            <section id="terrainDetails">
+            <div class="form-group col">
+                <label for="projectName">Nombre del proyecto</label>
+                <input type="text" class='form-control' value='{{viewProject.projectName}}' name="projectName" id="projectName" >
+            </div>
+            
+
+            
+            <div class="form-group col">
+                <label for="limitatiosLaws">Información de limitaciones (opcional)</label>
+                <input type="text" class='form-control'  value='{{viewProject.limitatiosLaws}}' name="limitatiosLaws" id="limitatiosLaws" placeholder="Agrega información sobre las limitaciones de construcción">
+            </div>
+
+            <!--<div>
+                <label for="terrainImages">Imagenes del terreno</label>
+                <input type="file" name="terrainImages" value="{{viewPRoject.terrainImages}}" id="terrainImages">
+            </div>-->
+
+            
+            </section>
+
+            <p style="font-weight: bold;font-size:22px ">Detalles y concepto</p> 
+            <div class="form-group col">
+                <div class="form-group col">  
+                    <label for="pinterstAPI">Agrega el link de tu board conceptual de Pinterest</label>
+                    <img src="./images/pinterest.png" alt="" width="20">
+                    <input class='form-control' value='{{viewProject.pinterstAPI}}'  type="text" name="pinterstAPI" id="pinterstAPI" placeholder="Agrega el link de tu tablero de Pinterest">
+                </div>
+
+                <div class="form-group col">
+                    <label for="specificRequest">Detalles importantes</label>
+                    <input type="text" class='form-control' value='{{viewProject.specificRequest}}'  name="specificRequest" id="specificRequest" placeholder="Agrega detalles importantes para tu diseño, cantidad de habitaciones, baños, materiales, etc.">
+                </div>
+                <div class="form-group col">
+                    <label for="renderImg">Render Principal</label>
+                    <input class='form-control' type="file" name="renderImg" value="{{viewProject.renderImg}}" id="renderImg" placeholder="fsdfsdf">
+                    <small class="form-text text-muted">Revisa que tu imagen esté correctamente cargada.</small >
+                </div>
+            </div>
+
+            <div class=" d-flex align-content-center justify-content-center ">
+                <button type="submit" class="btn-lg m-1 btn-outline-success" >Guardar cambios</button>
+            </div>
+        </div>
+        </form>
+
+    </div>
+</div>
+{{/if}}
+

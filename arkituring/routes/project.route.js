@@ -1,38 +1,35 @@
-const  {Router} = require('express');
-const router = new Router();
-const bcrypt = require('bcrypt');
-const mongoose = require('mongoose');
-const Architect = require('../models/Architect.model')
+const {Router}     = require('express');
+const router       = new Router();
+const bcrypt       = require('bcrypt');
+const mongoose     = require('mongoose');
+const Architect    = require('../models/Architect.model')
 const Construction = require ('../models/Construction.model.js');
-const Client = require ('../models/Client.model');
+const Client       = require ('../models/Client.model');
 const fileUploader = require('../confing/cloudinary.config.js');
 
 //rutas
 //detalle por proyecto
-router.get('/project/:id/details',async(req,res,next)=>{
-  const id = req.params.id
-  if(req.session.currentArchitect || req.session.currentClient ){
-  const selectedProject = await Construction.findById(id)
-
-  res.render('Project/project-main', 
-  {
-    viewPRoject:selectedProject,
-    valueCookieArq:req.session.currentArchitect,
-    valueCookieUser:req.session.currentClient
-  })
-}
+router.get('/project/:id/details', async(req,res,next) => {
+  if (req.session.currentClient) {
+    const id = req.params.id;
+    const selectedProject = await Construction.findById(id)
+    res.render('Project/project-main', 
+    {
+      viewPRoject:selectedProject,
+      valueCookieUser:req.session.currentClient
+    })
+  }
 })
 
 router.get('/project/:id/edit',async(req,res,next)=>{
   const id = req.params.id
-  if(req.session.currentArchitect || req.session.currentClient ){
+  if(req.session.currentClient ){
   const selectedProject = await Construction.findById(id)
 
   res.render('Project/project-edit', 
   {
     idEdit:id,
     viewPRoject:selectedProject,
-    valueCookieArq:req.session.currentArchitect,
     valueCookieUser:req.session.currentClient
   })
 }

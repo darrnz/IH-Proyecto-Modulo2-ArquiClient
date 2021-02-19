@@ -1,0 +1,85 @@
+
+{{#if valueCookie}}
+<hr class="mx-4">
+<div  class="mx-4">
+    <div class="ml-10 mr-10">
+        <form action="/add-project" method="POST" enctype="multipart/form-data">
+        <br>
+        <p style="font-weight: bold;font-size:22px ">Información del proyecto</p>
+        <div class="form-group col">   
+            <div class="form-group row">
+                <div class="col">
+                    <label for="projectName">Nombre del proyecto</label>
+                    <input  class='form-control' type="text" value='{{viewPRoject.projectName}}' name="projectName" id="projectName" placeholder="Nombre con el que identificarás tu proyecto">
+                </div>   
+                <div class="col">
+                    <label for="totalSquareMeters">Metros cuadrados</label>
+                    <input class='form-control' type="number" name="totalSquareMeters" id="totalSquareMeters">
+                </div>   
+                <div class=" col">
+                    <label for="terrainImages">Imagenes del terreno</label>
+                    <input class='form-control' type="file" name="terrainImages" id="terrainImages">
+                </div>
+            </div>
+        </div> 
+        <div class="form-group col"> 
+            <label for="address">Dirección</label>
+            <input class='form-control' type="text" name="address" id="address" placeholder="Dirección del lugar">
+        </div>
+        <div class="form-group col">
+            <label for="limitatiosLaws">Información de limitaciones (opcional)</label>
+            <input type="text" class='form-control' name="limitatiosLaws" id="limitatiosLaws" placeholder="Agrega información sobre las limitaciones de construcción">
+        </div>
+        <br>    
+        <p style="font-weight: bold;font-size:22px ">Detalles y concepto</p>
+        <div>
+            <div class="form-group col">
+                <label for="pinterstAPI">Agrega el link de tu board conceptual de Pinterest</label>
+                <img src="./images/pinterest.png" alt="" width="20"><input class='form-control' type="text" name="pinterstAPI" id="pinterstAPI" placeholder="Agrega el link de tu tablero de Pinterest">
+            </div>
+
+            <div class="form-group col">
+                <label for="specificRequest">Detalles importantes</label>
+                <input type="text" class='form-control'  name="specificRequest" id="specificRequest" placeholder="Agrega detalles importantes para tu diseño, cantidad de habitaciones, baños, materiales, etc.">
+            </div>
+
+            <div>
+                <input style='display:none' value='{{valueCookie._id}}' type="text" name="clientId" id="clientId">
+            </div>
+        </div>
+        <br>
+        <p style="font-weight: bold;font-size:22px ">Selecciona tu despacho</p>
+            <div class=" row d-flex flex-row align-content-center ">
+                {{#each availableArchitects}}
+                        <div class="col-md-3 border m-2">
+                            <input class='form-control m-2' type="radio" value="{{this._id}}" name='selectArchitect'>
+                            <p class="text-center mt-1 " style="font-weight: bold; font-size:20px ">{{this.commercialName}}</p>
+                            <hr>
+                            <div class="row d-flex flex-column justify-content-md-between ">
+                                <img class="p-5" src="{{this.logoImg}}" alt="">
+                                <div class="d-flex m-1 flex-row align-items-s d-flex  align-items-stretch justify-content-center">
+                                    {{#if this.webPage }}
+                                        <a class="p-1" href="{{this.webPage}}"><img src="./images/globe.svg" alt="webPage" width="30" height="30"></a>
+                                    {{/if}}
+
+                                    {{#if this.instagram }}
+                                        <a  class="p-1" href="{{this.instagram}}"><img src="./images/instagram.svg" alt="IG-logo" width="30" height="30"></a>
+                                    {{/if}}
+
+                                    {{#if this.facebook }}
+                                        <a class="p-1"  href="{{this.facebook}}"><img src="./images/facebook.svg" alt="facebook-logo" width="30" height="30"></a>
+                                    {{/if}}
+                                    
+                                    {{#if this.twitter }}
+                                        <a class="p-1" href="{{this.twitter}}"><img src="./images/twitter.svg" alt="twitter-logo" width="30" height="30"></a>
+                                    {{/if}}
+                                </div>
+                            </div>
+                        </div>
+                {{/each}}
+            </div>
+        <button class="btn m-1 btn-outline-success" type="submit">Crear Proyecto</button>
+        </form>
+    </div>
+</div>
+{{/if}}

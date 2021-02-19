@@ -1,21 +1,20 @@
-<!--datealles por proyect-->
 
-
+{{#if valueCookie}}
+<hr class="mx-4">
+<div class="mx-4"> 
 <div class=" media row py-1 px-1 ">
     <div class="border rounded col-md-11 mx-auto">
-        <!-- Profile widget -->
         <div class="bg-black shadow rounded overflow-hidden">
             <div class="px-4 pt-0 pb-4 cover">
                 <div class="media pt-4 align-items-center profile-head">
-                    <div class="profile mr-2"><img src="{{viewPRoject.renderImg}}" alt="..." width="500" class="rounded mb-2 img-thumbnail">
-                    <a href="/project/{{viewPRoject.id}}/edit" class="btn btn-outline-warning btn-lg btn-block">Editar información del proyecto</a></div>
+                    <div class="profile mr-2"><img src="{{viewProject.renderImg}}" alt="..." width="500" class="rounded mb-2 img-thumbnail">
+                    <a href="/project/{{viewProject.id}}/edit-arq" class="btn btn-outline-warning btn-lg btn-block">Editar información del proyecto</a></div>
                     <div class="media-body mb-1 text-black">
-                        <h4 class="mt-0 mb-0">{{viewPRoject.projectName}}</h4>
+                        <h4 class="mt-0 mb-0">{{viewProject.projectName}}</h4>
                         <div class="px-4 py-3">
-                          <h5 class="mb-0">Despacho asignado: </h5>
+                          <h5 class="mb-0">Datos cliente: </h5>
                           <div class="p-4 rounded shadow-sm bg-light">
-                            <p class="font-italic mb-0">W</p>
-                            
+                            <p class="font-italic mb-0"></p>
                             <p class="font-italic mb-0">w</p>
                           </div>
                         </div>
@@ -28,12 +27,12 @@
                 <h5 class="mb-0">Información General</h5>
                 <div class="row p-4 rounded shadow-sm bg-light">
                   <div class="col">
-                    <p class="font-italic mb-0">Dirección:<span><p class="mb-0" style="font-weight: bold;">{{viewPRoject.address}}</p></span></p>
-                    <p class="font-italic mb-0">Metros cuadrados totales:<span><p class="mb-0" style="font-weight: bold;">{{viewPRoject.totalSquareMeters}}</p></span></p>
+                    <p class="font-italic mb-0">Dirección:<span><p class="mb-0" style="font-weight: bold;">{{viewProject.address}}</p></span></p>
+                    <p class="font-italic mb-0">Metros cuadrados totales:<span><p class="mb-0" style="font-weight: bold;">{{viewProject.totalSquareMeters}}</p></span></p>
                   </div>
                   <div class="col">
                     <p class="font-italic mb-0">Imagen del terreno/estado actual: </p>
-                    <span><img src="{{viewPRoject.terrainImages}}" alt="" width="200" height="200"></span>
+                    <span><img src="{{viewProject.terrainImages}}" alt="" width="200" height="200"></span>
                   </div>
                 </div>
             </div>
@@ -42,7 +41,7 @@
                 <div class="p-4 rounded shadow-sm bg-light">
                     <div class="row d-flex align-items-center justify-content-center">
                       <div class="d-flex  col mb-2 pr-1 justify-content-center">
-                        <a data-pin-do="embedBoard" data-pin-board-width="1200" data-pin-scale-height="500" data-pin-scale-width="200" href="{{viewPRoject.pinterstAPI}}"></a>
+                        <a data-pin-do="embedBoard" data-pin-board-width="1200" data-pin-scale-height="500" data-pin-scale-width="200" href="{{viewProject.pinterstAPI}}"></a>
                       </div>
                     </div>
                 </div>
@@ -52,4 +51,5 @@
         </div>
     </div>
 </div>
-
+</div>
+{{/if}}

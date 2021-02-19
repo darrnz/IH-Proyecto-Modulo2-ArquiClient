@@ -26,9 +26,6 @@ const clientSchema = new Schema(
                     type:String,
                     required:[true,'Por favor agrega una contraseña']
                 },
-                phoneCountry:{
-                    //banderitas con el prefijo internacional
-                },
                 mobileNumber:{
                     type:String,
                     required:[true,"Agregue un número de teléfono válido"]

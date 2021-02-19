@@ -1,58 +1,51 @@
 
-
-<h1 class="h2 mb-10 font-weight-normal text-center">Bienvenido</h1>
-
-    <div class="mt-5 container loginTags text-center block-center "></div>
+<div class="mt-5 container loginTags text-center block-center "></div>
 <script>
-
     let selectLoginUser = false;
-    function changeLoginUser(){
+    function changeLoginUser () {
         selectLoginUser = selectLoginUser === true ?  false : true;
         document.querySelector('.loginTags').innerHTML =`
-    <form class="form-signin " action="/login" method="POST">
+            <form class="form-signin " action="/login" method="POST">
+                    <img class="mb-4" src="./images/logo.png" alt="" width="90" height="90">
+                    <br>
+                        <!--tag para mandar a Arch o Client-->
+                    <div>    
+                    <input class="noDisplay" type="text" style="display:none" name="userSign" value="${!selectLoginUser? 'architect':'client'}"id="userSign">
+                    </div>
+                <div>
+                    <h4>Iniciar como: <input  class="btn-lg btn-outline-dark" type="button" onclick='changeLoginUser()' id='client' name="userType"
+                        value="${!selectLoginUser? 'Empresa':'Cliente'}" width="150"></h4>
+                    <small class="form-text text-muted" >Clickea para cambiar el tipo de visitante.</small >
+                </div>
 
-            <img class="mb-4" src="./images/logo.png" alt="" width="72" height="72">
-            <h4><b>IDEANDO</b></h4>
-            <br>
-            <br>
-                <!--tag para mandar a Arch o Client-->
-            <div>    
-            <input class="noDisplay" type="text" style="display:none" name="userSign" value="${!selectLoginUser? 'architect':'client'}"id="userSign">
-            </div>
-
-        <h3>Soy: ${!selectLoginUser? 'Empresa':'Cliente'}</h3>
-        <div>
-            <input type="button" onclick='changeLoginUser()' id='client' name="userType"
-             value="Cambiar" class="btn btn-lg fw-bold border-black bg-black">
-        </div>
-
-       
-        <div >
-            <label for="email" class="sr-only ">Correo Electrónico</label>
-            <input type="email" class=" mt-4 form " style="height:50px;width:300px" name="email" id="email" required="" autofocus="" placeholder="Correo electrónico principal">
-        </div>
-
-       <div>
-            <label for="password" class="sr-only">Contraseña</label>
-            <input type="password" class="form" style="height:50px; width:300px" name="password" id="password" required="" placeholder="********">
-        </div>   
-
-        
-       <div>
-           <button type="submit"   style="width:100px" class="mb-4 mt-4 btn btn-lg btn-primary ">LogIn</button>
-        </div>  
             
-        <div>
-            <p>No tengo una cuenta</p>
-            <a href="/signup">Signup</a>
-        </div>
+                <div >
+                    <label for="email" class="sr-only ">Correo Electrónico</label>
+                    <input type="email" class=" mt-4 form " style="height:50px;width:300px" name="email" id="email" required="" autofocus="" placeholder="Correo electrónico principal">
+                </div>
 
-        {{#if errorMessage}}
-        <p class="error">{{errorMessage}}</p>
-        {{/if}}    
-    
-</div>
-</form>`
+            <div>
+                    <label for="password" class="sr-only">Contraseña</label>
+                    <input type="password" class="form" style="height:50px; width:300px" name="password" id="password" required="" placeholder="********">
+                </div>   
+
+                
+            <div>
+                <button type="submit" style="width:200px" class="mb-4 mt-4 btn-lg btn-outline-primary ">Iniciar Sesión</button>
+                </div>  
+                
+                {{#if errorMessage}}
+                <div class="alert alert-danger">
+                <p class="error">{{errorMessage}}</p>
+                </div>
+                {{/if}}    
+                    <div>
+                        <br>
+                    <p><b>No tengo una cuenta</b></p>
+                    <a href="/signup" class="btn btn-outline-secondary" >Signup</a>
+                </div>
+                </div>
+            </form>`
     };
 
 changeLoginUser();
