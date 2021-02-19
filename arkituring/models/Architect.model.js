@@ -45,11 +45,11 @@ const archiSchema = new Schema(
                 },
                 city:{
                     type:String,
-                    required:[true,'Por favor agregue el nombre de su ciudad']
+                    
                 },
                 zipCode:{
                     type:String,/// filtrar por el selccionador de google maps?
-                    required:[true,'Por favor agregue su código postal']
+                 
                 },
             bioStory:String,
             webPage:String,
